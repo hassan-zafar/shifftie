@@ -19,8 +19,10 @@ class LineTitles {
           },
           margin: 8,
         ),
+        rightTitles: SideTitles(showTitles: false),
+        topTitles: SideTitles(showTitles: false),
         leftTitles: SideTitles(
-          showTitles: true,
+          showTitles: false,
           getTitles: (value) {
             switch (value.toInt()) {
               case 1:

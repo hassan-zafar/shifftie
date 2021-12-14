@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:shifftie/Theme/colors.dart';
 
 import 'line_chart_titles.dart';
+
 class LineChartWidget extends StatelessWidget {
   final List<Color> gradientColors = [
-    const Color(0xff23b6e6),
-    const Color(0xff02d39a),
+    btnGradLeft,
+    btnGradRight,
   ];
 
-   LineChartWidget({Key? key}) : super(key: key);
+  LineChartWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) => LineChart(
@@ -19,23 +21,23 @@ class LineChartWidget extends StatelessWidget {
           maxY: 6,
           titlesData: LineTitles.getTitleData(),
           gridData: FlGridData(
-            show: true,
+            show: false,
             getDrawingHorizontalLine: (value) {
               return FlLine(
                 color: const Color(0xff37434d),
-                strokeWidth: 1,
+                strokeWidth: 0,
               );
             },
-            drawVerticalLine: true,
+            drawVerticalLine: false,
             getDrawingVerticalLine: (value) {
               return FlLine(
                 color: const Color(0xff37434d),
-                strokeWidth: 1,
+                strokeWidth: 0,
               );
             },
           ),
           borderData: FlBorderData(
-            show: true,
+            show: false,
             border: Border.all(color: const Color(0xff37434d), width: 1),
           ),
           lineBarsData: [

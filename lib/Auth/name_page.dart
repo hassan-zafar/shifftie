@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shifftie/Components/custom_text_button.dart';
 import 'package:shifftie/Components/entry_field.dart';
+import 'package:shifftie/DashBoard/ActivityStats/activity_stats_page.dart';
 import 'package:shifftie/Routes/routes.dart';
 import 'package:shifftie/Theme/colors.dart';
 
@@ -21,7 +22,8 @@ class _NamePageState extends State<NamePage> {
             SizedBox(
               width: 80,
               child: Stack(
-                clipBehavior: Clip.none, children: [
+                clipBehavior: Clip.none,
+                children: [
                   Container(
                     padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(
@@ -82,7 +84,10 @@ class _NamePageState extends State<NamePage> {
             ),
             CustomTextButton(
               onTap: () =>
-                  Navigator.pushNamed(context, PageRoutes.bottomNavigation),
+                  // Navigator.pushNamed(context, PageRoutes.bottomNavigation),
+                  Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => const ActivityStatPage(),
+              )),
               text: 'Continue',
               isGradient: true,
             ),

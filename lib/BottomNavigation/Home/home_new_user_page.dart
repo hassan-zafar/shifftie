@@ -10,8 +10,8 @@ class HomeNewUserFollowPage extends StatefulWidget {
 class _HomeNewUserFollowPageState extends State<HomeNewUserFollowPage> {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Scaffold(body: Column(children: [
       
-    );
+    ],),);
   }
 }

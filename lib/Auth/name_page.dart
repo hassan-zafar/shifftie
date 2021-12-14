@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shifftie/BottomNavigation/Home/home_page.dart';
 import 'package:shifftie/Components/custom_text_button.dart';
 import 'package:shifftie/Components/entry_field.dart';
-import 'package:shifftie/DashBoard/ActivityStats/activity_stats_page.dart';
-import 'package:shifftie/Routes/routes.dart';
 import 'package:shifftie/Shifts/shifts_follow_screen.dart';
 import 'package:shifftie/Theme/colors.dart';
 

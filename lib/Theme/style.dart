@@ -22,8 +22,9 @@ final ThemeData appTheme = ThemeData.light().copyWith(
     headline6: const TextStyle(fontSize: 18.0),
     button: const TextStyle(fontSize: 16.0, letterSpacing: 1),
     subtitle2: const TextStyle(),
-    bodyText2: const TextStyle(),
-  ), colorScheme: ColorScheme.fromSwatch().copyWith(secondary: mainColor),
+    bodyText2: TextStyle(color: lightTextColor, fontSize: 18),
+  ),
+  colorScheme: ColorScheme.fromSwatch().copyWith(secondary: mainColor),
 );
 
 /// NAME         SIZE  WEIGHT  SPACING

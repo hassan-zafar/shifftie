@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shifftie/Auth/interests_page.dart';
 import 'package:shifftie/Auth/name_page.dart';
 import 'package:shifftie/Components/custom_text_button.dart';
 import 'package:shifftie/Theme/colors.dart';
@@ -19,7 +20,8 @@ class _PronounPageState extends State<PronounPage> {
           SizedBox(
             width: 80,
             child: Stack(
-              clipBehavior: Clip.none, children: [
+              clipBehavior: Clip.none,
+              children: [
                 Container(
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
@@ -113,7 +115,7 @@ class _PronounPageState extends State<PronounPage> {
             child: CustomTextButton(
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const NamePage(),
+                    builder: (context) => const InterestPage(),
                   ));
                 },
                 isGradient: true,

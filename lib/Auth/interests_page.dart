@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:shifftie/Auth/name_page.dart';
+import 'package:shifftie/Components/custom_text_button.dart';
 import 'package:shifftie/Theme/colors.dart';
 
 class InterestPage extends StatefulWidget {
@@ -11,12 +13,14 @@ class InterestPage extends StatefulWidget {
 class _InterestPageState extends State<InterestPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(  appBar: AppBar(
+    return Scaffold(
+      appBar: AppBar(
         actions: [
           SizedBox(
             width: 80,
             child: Stack(
-              clipBehavior: Clip.none, children: [
+              clipBehavior: Clip.none,
+              children: [
                 Container(
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
@@ -50,7 +54,6 @@ class _InterestPageState extends State<InterestPage> {
           ),
         ],
       ),
-     
       body: Column(
         children: [
           Text(
@@ -68,6 +71,49 @@ class _InterestPageState extends State<InterestPage> {
           ),
           const SizedBox(
             height: 30,
+          ),
+          Row(
+            children: [
+              CustomTextButton(
+                  onTap: () {}, isGradient: true, text: '#Holidays'),
+              CustomTextButton(
+                  onTap: () {}, isGradient: true, text: '#Animals'),
+            ],
+          ),
+          Row(
+            children: [
+              CustomTextButton(
+                  onTap: () {}, isGradient: true, text: '#Havefun'),
+              CustomTextButton(
+                  onTap: () {}, isGradient: true, text: '#Designers'),
+            ],
+          ),
+          Row(
+            children: [
+              CustomTextButton(
+                  onTap: () {}, isGradient: true, text: '#4like4like'),
+              CustomTextButton(
+                  onTap: () {}, isGradient: true, text: '#Engineering'),
+            ],
+          ),
+          Row(
+            children: [
+              CustomTextButton(
+                  onTap: () {}, isGradient: true, text: '#Musiccover'),
+              CustomTextButton(
+                  onTap: () {}, isGradient: true, text: '#Abstract'),
+            ],
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: CustomTextButton(
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const NamePage(),
+                  ));
+                },
+                isGradient: true,
+                text: 'Next Step'),
           ),
         ],
       ),

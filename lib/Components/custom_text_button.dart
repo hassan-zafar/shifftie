@@ -5,7 +5,10 @@ import 'package:shifftie/utilities/utilities.dart';
 // ignore: must_be_immutable
 class CustomTextButton extends StatelessWidget {
   CustomTextButton(
-      {required this.onTap, this.isGradient, required this.text, Key? key})
+      {required this.onTap,
+      required this.isGradient,
+      required this.text,
+      Key? key})
       : super(key: key);
   final String text;
   bool? isGradient = true;

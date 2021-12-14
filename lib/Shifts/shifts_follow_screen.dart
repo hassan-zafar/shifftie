@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:shifftie/Components/custom_text_button.dart';
 
@@ -13,12 +14,17 @@ class _ShiftYouFollowScreenState extends State<ShiftYouFollowScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Shifts that you follow'),
+        title: const Text('Shifts that you follow'),
       ),
       body: Column(
         children: [
-          CustomTextButton(onTap: () {}, text: 'Start a new shift'),
+          CustomTextButton(
+              onTap: () {}, isGradient: true, text: 'Start a new shift'),
           Container(
+            decoration: const BoxDecoration(
+                image: DecorationImage(
+                    image: CachedNetworkImageProvider(
+                        'https://img.jakpost.net/c/2019/06/12/2019_06_12_74202_1560308728._large.jpg'))),
             child: Column(
               children: [
                 Row(

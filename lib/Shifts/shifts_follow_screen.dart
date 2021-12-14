@@ -47,6 +47,7 @@ class _ShiftYouFollowScreenState extends State<ShiftYouFollowScreen> {
                         fit: BoxFit.cover)),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,

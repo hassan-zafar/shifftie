@@ -5,6 +5,7 @@ import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:shifftie/Auth/Login/UI/login_page.dart';
 import 'package:shifftie/Locale/locale.dart';
 import 'package:shifftie/Routes/routes.dart';
+import 'package:shifftie/Screens/welcome.dart';
 import 'package:shifftie/Theme/style.dart';
 import 'Locale/language_cubit.dart';
 
@@ -42,7 +43,7 @@ class Shifftie extends StatelessWidget {
         ],
         theme: appTheme,
         locale: locale,
-        home: const LoginPage(),
+        home: const WelcomescreenWidget(),
         routes: PageRoutes().routes(),
       ),
     );

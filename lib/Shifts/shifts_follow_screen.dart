@@ -2,6 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:shifftie/Auth/interests_page.dart';
 import 'package:shifftie/Components/custom_text_button.dart';
+import 'package:shifftie/Routes/routes.dart';
+import 'package:shifftie/Shifts/ShiftExpand/shift_tabbar_page.dart';
 import 'package:shifftie/Theme/colors.dart';
 
 class ShiftYouFollowScreen extends StatefulWidget {
@@ -21,10 +23,16 @@ class _ShiftYouFollowScreenState extends State<ShiftYouFollowScreen> {
       body: Column(
         children: [
           CustomTextButton(
-              onTap: () {}, isGradient: true, text: 'Start a new shift'),
+              onTap: () =>
+                  Navigator.pushNamed(context, PageRoutes.bottomNavigation),
+              isGradient: true,
+              text: 'Start a new shift'),
           Padding(
             padding: const EdgeInsets.all(12.0),
-            child: InkWell(onTap: ()=>Navigator.of(context).push(MaterialPageRoute(builder: (context) => ,)),
+            child: InkWell(
+              onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => const ShiftTabBarPage(),
+              )),
               child: Container(
                 height: 160,
                 width: MediaQuery.of(context).size.width,

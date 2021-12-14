@@ -3,6 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:shifftie/BottomNavigation/Explore/more_page.dart';
 import 'package:shifftie/Components/thumb_list.dart';
+import 'package:shifftie/Components/titleRow.dart';
 import 'package:shifftie/Locale/locale.dart';
 import 'package:shifftie/Routes/routes.dart';
 import 'package:shifftie/Theme/colors.dart';
@@ -71,12 +72,12 @@ class _ExploreBodyState extends State<ExploreBody> {
   Widget build(BuildContext context) {
     var locale = AppLocalizations.of(context)!;
     final List<TitleRow> titleRows = [
-      TitleRow(locale.danceLike, '159.8k', dance),
-      TitleRow(locale.laughOut, '108.9k', lol),
-      TitleRow(locale.followUr, '159.8k', food),
-      TitleRow(locale.danceLike, '159.8k', dance),
-      TitleRow(locale.laughOut, '108.9k', lol),
-      TitleRow(locale.followUr, '159.8k', food),
+      TitleRow(locale.danceLike, '12', dance),
+      TitleRow(locale.laughOut, '9', lol),
+      TitleRow(locale.followUr, '14', food),
+      TitleRow(locale.danceLike, '15', dance),
+      TitleRow(locale.laughOut, '10', lol),
+      TitleRow(locale.followUr, '9', food),
     ];
     return Padding(
       padding: const EdgeInsets.only(bottom: 60.0, top: 20.0),
@@ -85,7 +86,8 @@ class _ExploreBodyState extends State<ExploreBody> {
           preferredSize: const Size.fromHeight(72.0),
           child: Container(
             margin: const EdgeInsets.all(20.0),
-            padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 24.0),
+            padding:
+                const EdgeInsets.symmetric(vertical: 0.0, horizontal: 24.0),
             decoration: BoxDecoration(
               color: darkColor,
               borderRadius: BorderRadius.circular(25.0),
@@ -114,8 +116,7 @@ class _ExploreBodyState extends State<ExploreBody> {
                         builder: (BuildContext context) {
                           return GestureDetector(
                             onTap: () {},
-                            child: FadedScaleAnimation(
-                              child: Image.asset(i)),
+                            child: FadedScaleAnimation(child: Image.asset(i)),
                           );
                         },
                       );
@@ -176,55 +177,5 @@ class _ExploreBodyState extends State<ExploreBody> {
         ),
       ),
     );
-  }
-}
-
-class TitleRow extends StatelessWidget {
-  final String? title;
-  final String subTitle;
-  final List list;
-
-  const TitleRow(this.title, this.subTitle, this.list, {Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-        leading: CircleAvatar(
-          backgroundColor: darkColor,
-          child: Text(
-            '#',
-            style: TextStyle(color: mainColor),
-          ),
-        ),
-        title: Text(
-          title!,
-          style: Theme.of(context).textTheme.bodyText1,
-        ),
-        subtitle: Row(
-          children: <Widget>[
-            Text(
-              subTitle + ' ' + AppLocalizations.of(context)!.video!,
-              style: Theme.of(context).textTheme.caption,
-            ),
-            const Spacer(),
-            Text(
-              "${AppLocalizations.of(context)!.viewAll}",
-              style: Theme.of(context).textTheme.caption,
-            ),
-            Icon(
-              Icons.arrow_forward_ios,
-              color: secondaryColor,
-              size: 10,
-            ),
-          ],
-        ),
-        onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => MorePage(
-                        title: title,
-                        list: list,
-                      )),
-            ));
   }
 }

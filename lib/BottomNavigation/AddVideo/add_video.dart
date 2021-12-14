@@ -1,5 +1,4 @@
 import 'package:animation_wrappers/animation_wrappers.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shifftie/Locale/locale.dart';
 import 'package:shifftie/Routes/routes.dart';

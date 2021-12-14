@@ -178,6 +178,7 @@ class _InterestPageState extends State<InterestPage> {
   }
 }
 
+// ignore: must_be_immutable
 class CustomTextButtonIntr extends StatefulWidget {
   CustomTextButtonIntr(
       {required this.onTap,

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
-import 'package:shifftie/Auth/Login/UI/login_page.dart';
 import 'package:shifftie/Locale/locale.dart';
 import 'package:shifftie/Routes/routes.dart';
 import 'package:shifftie/Screens/welcome.dart';

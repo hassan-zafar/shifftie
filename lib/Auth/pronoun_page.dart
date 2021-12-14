@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:shifftie/Auth/interests_page.dart';
-import 'package:shifftie/Auth/name_page.dart';
 import 'package:shifftie/Components/custom_text_button.dart';
 import 'package:shifftie/Theme/colors.dart';
 

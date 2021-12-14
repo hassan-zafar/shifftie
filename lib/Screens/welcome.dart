@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
-
 import 'package:flutter_svg/svg.dart';
 import 'package:shifftie/Auth/Login/UI/login_page.dart';
 import 'package:shifftie/Auth/Registration/UI/register_page.dart';
 import 'package:shifftie/Components/custom_text_button.dart';
-import 'package:shifftie/Theme/colors.dart';
 
 class WelcomescreenWidget extends StatelessWidget {
   const WelcomescreenWidget({Key? key}) : super(key: key);
@@ -18,7 +16,7 @@ class WelcomescreenWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Container(
+          SizedBox(
             height: MediaQuery.of(context).size.height * 0.7,
             child: Stack(
               children: <Widget>[

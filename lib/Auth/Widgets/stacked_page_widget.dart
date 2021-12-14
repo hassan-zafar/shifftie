@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:shifftie/Theme/colors.dart';
 
-class StackedPageCounter extends StatelessWidget {
+// ignore: must_be_immutable
+class StackedPageCounter extends StatefulWidget {
   StackedPageCounter({Key? key, this.pageNo, this.position}) : super(key: key);
   double? position;
   String? pageNo;
+
+  @override
+  State<StackedPageCounter> createState() => _StackedPageCounterState();
+}
+
+class _StackedPageCounterState extends State<StackedPageCounter> {
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -17,7 +24,7 @@ class StackedPageCounter extends StatelessWidget {
               colors: [btnGradLeft, btnGradRight],
             ),
           ),
-          child: Text('1'),
+          child: const Text('1'),
         )
       ],
     );

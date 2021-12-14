@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shifftie/Locale/locale.dart';
 import 'package:shifftie/Theme/colors.dart';

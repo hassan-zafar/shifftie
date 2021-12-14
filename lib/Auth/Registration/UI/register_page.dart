@@ -1,7 +1,5 @@
 import 'package:animation_wrappers/animation_wrappers.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/widgets.dart';
 import 'package:shifftie/Auth/pronoun_page.dart';
 import 'package:shifftie/Components/custom_text_button.dart';
 import 'package:shifftie/Components/entry_field.dart';

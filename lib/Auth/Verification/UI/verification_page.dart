@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:animation_wrappers/animation_wrappers.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:shifftie/Components/continue_button.dart';
 import 'package:shifftie/Components/entry_field.dart';
 import 'package:shifftie/Locale/locale.dart';

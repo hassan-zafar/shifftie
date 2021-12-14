@@ -1,5 +1,4 @@
 import 'package:animation_wrappers/animation_wrappers.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shifftie/BottomNavigation/Explore/explore_page.dart';
 import 'package:shifftie/BottomNavigation/MyProfile/followers.dart';

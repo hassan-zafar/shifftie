@@ -1,5 +1,4 @@
 import 'package:animation_wrappers/animation_wrappers.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:shifftie/Components/profile_page_button.dart';

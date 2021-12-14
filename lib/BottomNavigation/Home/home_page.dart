@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shifftie/BottomNavigation/Home/following_tab.dart';
 import 'package:shifftie/Locale/locale.dart';

@@ -14,7 +14,7 @@ class _ActivityStatPageState extends State<ActivityStatPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Activity'),
+        title: const Text('Activity'),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,

@@ -8,9 +8,13 @@ class CustomTextButton extends StatelessWidget {
       {required this.onTap,
       required this.isGradient,
       required this.text,
+      this.paddingHor,
+      this.paddingVert,
       Key? key})
       : super(key: key);
   final String text;
+  final double? paddingVert;
+  final double? paddingHor;
   bool? isGradient = true;
   final VoidCallback onTap;
   @override
@@ -20,8 +24,8 @@ class CustomTextButton extends StatelessWidget {
       child: Container(
         margin: EdgeInsets.symmetric(vertical: Utilities.padding / 2),
         padding: EdgeInsets.symmetric(
-          vertical: Utilities.padding,
-          horizontal: Utilities.padding * 3,
+          vertical: paddingVert ?? Utilities.padding,
+          horizontal: paddingHor ?? Utilities.padding * 3,
         ),
         decoration: BoxDecoration(
           color: textFieldColor,

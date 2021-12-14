@@ -186,11 +186,18 @@ class CustomTextButtonIntr extends StatefulWidget {
       required this.text,
       this.paddingHor,
       this.paddingVert,
+      this.height,
+      this.fontSize,
+      this.width,
       Key? key})
       : super(key: key);
   final String text;
   final double? paddingVert;
   final double? paddingHor;
+  final double? height;
+  final double? width;
+  final double? fontSize;
+
   bool? isGradient = true;
   final VoidCallback onTap;
 
@@ -204,7 +211,7 @@ class _CustomTextButtonIntrState extends State<CustomTextButtonIntr> {
     return GestureDetector(
       onTap: widget.onTap,
       child: Container(
-        height: 70, width: 160,
+        height: widget.height ?? 70, width: widget.width ?? 160,
         margin: EdgeInsets.symmetric(vertical: Utilities.padding / 2),
         // padding: EdgeInsets.symmetric(
         //   vertical: widget.paddingVert ?? Utilities.padding,
@@ -227,7 +234,7 @@ class _CustomTextButtonIntrState extends State<CustomTextButtonIntr> {
             style: TextStyle(
               color: lightTextColor,
               letterSpacing: 1,
-              fontSize: 22,
+              fontSize: widget.fontSize ?? 22,
             ),
           ),
         ),

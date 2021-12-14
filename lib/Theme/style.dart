@@ -21,7 +21,7 @@ final ThemeData appTheme = ThemeData.light().copyWith(
     bodyText1: const TextStyle(fontSize: 16.0),
     headline6: const TextStyle(fontSize: 18.0),
     button: const TextStyle(fontSize: 16.0, letterSpacing: 1),
-    subtitle2: const TextStyle(),
+    subtitle2: TextStyle(color: captionTextColor),
     bodyText2: TextStyle(color: lightTextColor, fontSize: 18),
   ),
   colorScheme: ColorScheme.fromSwatch().copyWith(secondary: mainColor),

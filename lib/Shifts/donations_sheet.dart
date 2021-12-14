@@ -4,62 +4,62 @@ import 'package:shifftie/Components/entry_field.dart';
 import 'package:shifftie/Locale/locale.dart';
 import 'package:shifftie/Theme/colors.dart';
 
-class Comment {
+class Donation {
   final String? image;
   final String? name;
   final String? comment;
   final String? time;
 
-  Comment({this.image, this.name, this.comment, this.time});
+  Donation({this.image, this.name, this.comment, this.time});
 }
 
-void commentSheet(BuildContext context) async {
+void donationSheet(BuildContext context) async {
   var locale = AppLocalizations.of(context)!;
 
-  List<Comment> comments = [
-    Comment(
+  List<Donation> comments = [
+    Donation(
       image: 'assets/user/user1.png',
       name: 'Emili Williamson',
       comment: locale.comment1,
       time: ' 5' + locale.minAgo!,
     ),
-    Comment(
+    Donation(
       image: 'assets/user/user2.png',
       name: 'Yella Jackson',
       comment: locale.comment2,
       time: ' 15' + locale.minAgo!,
     ),
-    Comment(
+    Donation(
       image: 'assets/user/user3.png',
       name: 'Lisa devil',
       comment: locale.comment3,
       time: ' 1' + locale.dayAgo!,
     ),
-    Comment(
+    Donation(
       image: 'assets/user/user4.png',
       name: 'Emila Wattson',
       comment: locale.comment4,
       time: ' 2' + locale.dayAgo!,
     ),
-    Comment(
+    Donation(
       image: 'assets/user/user1.png',
       name: 'Emili Williamson',
       comment: locale.comment1,
       time: ' 5' + locale.minAgo!,
     ),
-    Comment(
+    Donation(
       image: 'assets/user/user2.png',
       name: 'Yella Jackson',
       comment: locale.comment2,
       time: ' 15' + locale.minAgo!,
     ),
-    Comment(
+    Donation(
       image: 'assets/user/user3.png',
       name: 'Lisa devil',
       comment: locale.comment3,
       time: ' 1' + locale.dayAgo!,
     ),
-    Comment(
+    Donation(
       image: 'assets/user/user4.png',
       name: 'Emila Wattson',
       comment: locale.comment4,

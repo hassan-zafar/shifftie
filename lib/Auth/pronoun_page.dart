@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shifftie/Auth/interests_page.dart';
 import 'package:shifftie/Components/custom_text_button.dart';
 import 'package:shifftie/Theme/colors.dart';
@@ -78,10 +79,9 @@ class _PronounPageState extends State<PronounPage> {
             children: [
               Column(
                 children: [
-                  Image.asset(
-                    'assets/images/video 2.png',
-                    fit: BoxFit.cover,
-                    height: 250,
+                  SvgPicture.asset(
+                    'assets/images/Frame10.svg',
+                    semanticsLabel: 'icon',
                   ),
                   const Padding(
                     padding: EdgeInsets.all(8.0),
@@ -91,11 +91,8 @@ class _PronounPageState extends State<PronounPage> {
               ),
               Column(
                 children: [
-                  Image.asset(
-                    'assets/images/video 2.png',
-                    fit: BoxFit.cover,
-                    height: 250,
-                  ),
+                  SvgPicture.asset('assets/images/Frame11.svg',
+                      semanticsLabel: 'icon'),
                   const Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Text("She,Her Her's"),

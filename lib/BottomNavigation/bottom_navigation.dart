@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shifftie/BottomNavigation/Explore/explore_page.dart';
 import 'package:shifftie/BottomNavigation/Home/home_page.dart';
 import 'package:shifftie/BottomNavigation/MyProfile/my_profile_page.dart';
+import 'package:shifftie/DashBoard/ActivityStats/activity_stats_page.dart';
 import 'package:shifftie/Locale/locale.dart';
 import 'package:shifftie/Routes/routes.dart';
 import 'package:shifftie/BottomNavigation/Notifications/notification_messages.dart';
@@ -88,27 +89,109 @@ class _BottomNavigationState extends State<BottomNavigation> {
         label: locale.profile,
       ),
     ];
-    return Scaffold(
-      body: Stack(
-        children: <Widget>[
-          _children[_currentIndex],
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: BottomNavigationBar(
-              currentIndex: _currentIndex,
-              backgroundColor: transparentColor,
-              elevation: 0.0,
-              type: BottomNavigationBarType.fixed,
-              iconSize: 22.0,
-              selectedItemColor: secondaryColor,
-              selectedFontSize: 12,
-              unselectedFontSize: 10,
-              unselectedItemColor: secondaryColor,
-              items: _bottomBarItems,
-              onTap: onTap,
-            ),
+    return SafeArea(
+      child: Scaffold(
+        drawer: Drawer(
+          backgroundColor: mainColor,
+          child: Column(
+            // mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(
+                height: 50,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  'Emerson Watson',
+                  textAlign: TextAlign.start,
+                  style: Theme.of(context).textTheme.headline6,
+                ),
+              ),
+              ListTile(
+                leading: Icon(
+                  Icons.timer,
+                  color: lightTextColor,
+                ),
+                onTap: () {},
+                title: const Text('Statistics'),
+              ),
+              ListTile(
+                leading: Icon(
+                  Icons.star,
+                  color: lightTextColor,
+                ),
+                onTap: () {},
+                title: const Text('Favourites'),
+              ),
+              ListTile(
+                leading: Icon(
+                  Icons.notifications,
+                  color: lightTextColor,
+                ),
+                onTap: () {},
+                title: const Text('Balance'),
+              ),
+              ListTile(
+                leading: Icon(
+                  Icons.person_add,
+                  color: lightTextColor,
+                ),
+                onTap: () {},
+                title: const Text('Add Friends'),
+              ),
+              ListTile(
+                leading: Icon(
+                  Icons.settings,
+                  color: lightTextColor,
+                ),
+                onTap: () {},
+                title: const Text('Shifftie Settings'),
+              ),
+              ListTile(
+                leading: Icon(
+                  Icons.help,
+                  color: lightTextColor,
+                ),
+                onTap: () {},
+                title: const Text('Version History'),
+              ),
+              const Divider(),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.3,
+              ),
+              ListTile(
+                leading: Icon(
+                  Icons.logout,
+                  color: lightTextColor,
+                ),
+                onTap: () {},
+                title: const Text('Logout'),
+              ),
+            ],
           ),
-        ],
+        ),
+        body: Stack(
+          children: <Widget>[
+            _children[_currentIndex],
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: BottomNavigationBar(
+                currentIndex: _currentIndex,
+                backgroundColor: transparentColor,
+                elevation: 0.0,
+                type: BottomNavigationBarType.fixed,
+                iconSize: 22.0,
+                selectedItemColor: secondaryColor,
+                selectedFontSize: 12,
+                unselectedFontSize: 10,
+                unselectedItemColor: secondaryColor,
+                items: _bottomBarItems,
+                onTap: onTap,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

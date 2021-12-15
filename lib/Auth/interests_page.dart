@@ -96,7 +96,7 @@ class _InterestPageState extends State<InterestPage> {
                 padding: const EdgeInsets.all(8.0),
                 child: CustomTextButtonIntr(
                   onTap: () {},
-                  isGradient: true,
+                  isGradient: false,
                   text: '#Animals',
                   paddingHor: paddingHor,
                   paddingVert: paddingVert,
@@ -128,14 +128,14 @@ class _InterestPageState extends State<InterestPage> {
             children: [
               CustomTextButtonIntr(
                 onTap: () {},
-                isGradient: true,
+                isGradient: false,
                 text: '#4like4like',
                 paddingHor: paddingHor,
                 paddingVert: paddingVert,
               ),
               CustomTextButtonIntr(
                 onTap: () {},
-                isGradient: true,
+                isGradient: false,
                 text: '#Engineering',
                 paddingHor: paddingHor,
                 paddingVert: paddingVert,
@@ -154,7 +154,7 @@ class _InterestPageState extends State<InterestPage> {
               ),
               CustomTextButtonIntr(
                 onTap: () {},
-                isGradient: true,
+                isGradient: false,
                 text: '#Abstract',
                 paddingHor: paddingHor,
                 paddingVert: paddingVert,

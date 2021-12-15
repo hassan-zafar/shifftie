@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shifftie/Components/custom_text_button.dart';
 import 'package:shifftie/Components/entry_field.dart';
-import 'package:shifftie/Shifts/shifts_follow_screen.dart';
+import 'package:shifftie/Routes/routes.dart';
 import 'package:shifftie/Theme/colors.dart';
 
 class NamePage extends StatefulWidget {
@@ -83,10 +83,10 @@ class _NamePageState extends State<NamePage> {
             ),
             CustomTextButton(
               onTap: () =>
-                  // Navigator.pushNamed(context, PageRoutes.bottomNavigation),
-                  Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => const ShiftYouFollowScreen(),
-              )),
+                  Navigator.pushNamed(context, PageRoutes.bottomNavigation),
+              //     Navigator.of(context).push(MaterialPageRoute(
+              //   builder: (context) => const ShiftYouFollowScreen(),
+              // )),
               text: 'Continue',
               isGradient: true,
             ),

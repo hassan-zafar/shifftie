@@ -189,6 +189,7 @@ class CustomTextButtonIntr extends StatefulWidget {
       this.height,
       this.fontSize,
       this.width,
+      this.color,
       Key? key})
       : super(key: key);
   final String text;
@@ -197,7 +198,7 @@ class CustomTextButtonIntr extends StatefulWidget {
   final double? height;
   final double? width;
   final double? fontSize;
-
+  final Color? color;
   bool? isGradient = true;
   final VoidCallback onTap;
 
@@ -218,7 +219,7 @@ class _CustomTextButtonIntrState extends State<CustomTextButtonIntr> {
         //   horizontal: widget.paddingHor ?? Utilities.padding * 3,
         // ),
         decoration: BoxDecoration(
-          color: textFieldColor,
+          color: widget.color ?? textFieldColor,
           gradient: widget.isGradient!
               ? LinearGradient(
                   colors: [btnGradLeft, btnGradRight],

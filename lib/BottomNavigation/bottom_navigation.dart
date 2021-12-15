@@ -5,8 +5,10 @@ import 'package:shifftie/BottomNavigation/MyProfile/my_profile_page.dart';
 import 'package:shifftie/Locale/locale.dart';
 import 'package:shifftie/Routes/routes.dart';
 import 'package:shifftie/BottomNavigation/Notifications/notification_messages.dart';
+import 'package:shifftie/Shifts/shifts_follow_screen.dart';
 import 'package:shifftie/Theme/colors.dart';
 import 'package:shifftie/Theme/style.dart';
+import 'package:shifftie/main.dart';
 
 class BottomNavigation extends StatefulWidget {
   const BottomNavigation({Key? key}) : super(key: key);
@@ -22,6 +24,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
     const HomePage(),
     const ExplorePage(),
     Container(),
+    const ShiftYouFollowScreen(),
     const NotificationMessages(),
     const MyProfilePage(),
   ];
@@ -42,12 +45,14 @@ class _BottomNavigationState extends State<BottomNavigation> {
     final List<BottomNavigationBarItem> _bottomBarItems = [
       BottomNavigationBarItem(
         icon: const ImageIcon(AssetImage('assets/icons/ic_home.png')),
-        activeIcon: const ImageIcon(AssetImage('assets/icons/ic_homeactive.png')),
+        activeIcon:
+            const ImageIcon(AssetImage('assets/icons/ic_homeactive.png')),
         label: locale.home,
       ),
       BottomNavigationBarItem(
         icon: const ImageIcon(AssetImage('assets/icons/ic_explore.png')),
-        activeIcon: const ImageIcon(AssetImage('assets/icons/ic_exploreactive.png')),
+        activeIcon:
+            const ImageIcon(AssetImage('assets/icons/ic_exploreactive.png')),
         label: locale.explore,
       ),
       BottomNavigationBarItem(
@@ -61,14 +66,25 @@ class _BottomNavigationState extends State<BottomNavigation> {
         label: ' ',
       ),
       BottomNavigationBarItem(
+        icon: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 2.0),
+            decoration: BoxDecoration(
+              borderRadius: radius,
+              color: mainColor,
+            ),
+            child: const Icon(Icons.data_saver_off)),
+        label: ' ',
+      ),
+      BottomNavigationBarItem(
         icon: const ImageIcon(AssetImage('assets/icons/ic_notification.png')),
-        activeIcon:
-            const ImageIcon(AssetImage('assets/icons/ic_notificationactive.png')),
+        activeIcon: const ImageIcon(
+            AssetImage('assets/icons/ic_notificationactive.png')),
         label: locale.notification,
       ),
       BottomNavigationBarItem(
         icon: const ImageIcon(AssetImage('assets/icons/ic_profile.png')),
-        activeIcon: const ImageIcon(AssetImage('assets/icons/ic_profileactive.png')),
+        activeIcon:
+            const ImageIcon(AssetImage('assets/icons/ic_profileactive.png')),
         label: locale.profile,
       ),
     ];

@@ -1,9 +1,7 @@
 import 'package:animation_wrappers/animation_wrappers.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:shifftie/Auth/interests_page.dart';
 import 'package:shifftie/BottomNavigation/MyProfile/followers.dart';
-import 'package:shifftie/Components/profile_page_button.dart';
 import 'package:shifftie/Components/thumb_list.dart';
 import 'package:shifftie/Components/titleRow.dart';
 import 'package:shifftie/Locale/locale.dart';

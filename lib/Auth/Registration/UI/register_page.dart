@@ -1,5 +1,6 @@
 import 'package:animation_wrappers/animation_wrappers.dart';
 import 'package:flutter/material.dart';
+import 'package:shifftie/Auth/interests_page.dart';
 import 'package:shifftie/Auth/pronoun_page.dart';
 import 'package:shifftie/Components/custom_text_button.dart';
 import 'package:shifftie/Components/entry_field.dart';
@@ -90,7 +91,8 @@ class _RegisterFormState extends State<RegisterForm> {
 
             //continue button
             CustomTextButton(
-                text: 'Start Your Account',isGradient: true,
+                text: 'Start Your Account',
+                isGradient: true,
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => const PronounPage(),
@@ -100,6 +102,26 @@ class _RegisterFormState extends State<RegisterForm> {
               'Or',
               textAlign: TextAlign.center,
             ),
+            Row(
+              children: [
+                CustomTextButtonIntr(
+                    text: 'Instagram',
+                    isGradient: false,
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const PronounPage(),
+                      ));
+                    }),
+                CustomTextButtonIntr(
+                    text: 'Twitter',
+                    isGradient: false,
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const PronounPage(),
+                      ));
+                    }),
+              ],
+            )
           ],
         ),
       ),

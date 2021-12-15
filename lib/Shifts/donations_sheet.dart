@@ -86,7 +86,7 @@ void donationSheet(BuildContext context) async {
                       Padding(
                         padding: const EdgeInsets.all(20.0),
                         child: Text(
-                          locale.comments!,
+                          'Donations',
                           style: Theme.of(context)
                               .textTheme
                               .headline6!

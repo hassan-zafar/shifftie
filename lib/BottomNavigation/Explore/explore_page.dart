@@ -1,7 +1,9 @@
 import 'package:animation_wrappers/animation_wrappers.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:shifftie/BottomNavigation/Explore/more_page.dart';
+import 'package:shifftie/Auth/interests_page.dart';
+import 'package:shifftie/BottomNavigation/MyProfile/followers.dart';
+import 'package:shifftie/Components/profile_page_button.dart';
 import 'package:shifftie/Components/thumb_list.dart';
 import 'package:shifftie/Components/titleRow.dart';
 import 'package:shifftie/Locale/locale.dart';
@@ -67,7 +69,22 @@ class _ExploreBodyState extends State<ExploreBody> {
   ];
 
   int _current = 0;
-
+  List<User> users = [
+    User("George Smith", "@georgesmith", true, 'assets/user/user1.png'),
+    User("Emili Wiliamson", "@emiliwilliamson", true, 'assets/user/user2.png'),
+    User("Kesha Taylor", "@iamkesha007", true, 'assets/user/user3.png'),
+    User("Linda Johnson", "@lindahere", true, 'assets/user/user2.png'),
+    User("Opus Labs", "@opuslabs", true, 'assets/user/user4.png'),
+    User("Ling Tong", "@lingtong", true, 'assets/user/user3.png'),
+    User("Tosh Williamson", "@mr.williamson", true, 'assets/user/user1.png'),
+    User("Uzuz Smith", "@imuzuz", true, 'assets/user/user4.png'),
+    User("Rohan Patel", "@roahnindian", true, 'assets/user/user2.png'),
+    User("Opus Labs", "@opuslabs", true, 'assets/user/user4.png'),
+    User("Ling Tong", "@lingtong", true, 'assets/user/user3.png'),
+    User("Tosh Williamson", "@mr.williamson", true, 'assets/user/user1.png'),
+    User("Uzuz Smith", "@imuzuz", true, 'assets/user/user4.png'),
+    User("Rohan Patel", "@roahnindian", true, 'assets/user/user2.png'),
+  ];
   @override
   Widget build(BuildContext context) {
     var locale = AppLocalizations.of(context)!;
@@ -108,52 +125,65 @@ class _ExploreBodyState extends State<ExploreBody> {
           child: ListView(
             physics: const BouncingScrollPhysics(),
             children: <Widget>[
-              Stack(
-                children: [
-                  CarouselSlider(
-                    items: carouselImages.map((i) {
-                      return Builder(
-                        builder: (BuildContext context) {
-                          return GestureDetector(
-                            onTap: () {},
-                            child: FadedScaleAnimation(child: Image.asset(i)),
-                          );
-                        },
-                      );
-                    }).toList(),
-                    options: CarouselOptions(
-                        enableInfiniteScroll: false,
-                        viewportFraction: 1.0,
-                        autoPlay: true,
-                        aspectRatio: 3,
-                        onPageChanged: (index, reason) {
-                          setState(() {
-                            _current = index;
-                          });
-                        }),
-                  ),
-                  Positioned.directional(
-                    textDirection: Directionality.of(context),
-                    end: 20.0,
-                    bottom: 0.0,
-                    child: Row(
-                      children: carouselImages.map((i) {
-                        int index = carouselImages.indexOf(i);
+              // Stack(
+              //   children: [
+              //     CarouselSlider(
+              //       items: carouselImages.map((i) {
+              //         return Builder(
+              //           builder: (BuildContext context) {
+              //             return GestureDetector(
+              //               onTap: () {},
+              //               child: FadedScaleAnimation(child: Image.asset(i)),
+              //             );
+              //           },
+              //         );
+              //       }).toList(),
+              //       options: CarouselOptions(
+              //           enableInfiniteScroll: false,
+              //           viewportFraction: 1.0,
+              //           autoPlay: true,
+              //           aspectRatio: 3,
+              //           onPageChanged: (index, reason) {
+              //             setState(() {
+              //               _current = index;
+              //             });
+              //           }),
+              //     ),
+              //     Positioned.directional(
+              //       textDirection: Directionality.of(context),
+              //       end: 20.0,
+              //       bottom: 0.0,
+              //       child: Row(
+              //         children: carouselImages.map((i) {
+              //           int index = carouselImages.indexOf(i);
 
-                        return Container(
-                          width: 8.0,
-                          height: 8.0,
-                          margin: const EdgeInsets.symmetric(
-                              vertical: 16.0, horizontal: 4.0),
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: _current == index
-                                ? const Color.fromRGBO(0, 0, 0, 0.9)
-                                : disabledTextColor.withOpacity(0.5),
-                          ),
-                        );
-                      }).toList(),
-                    ),
+              //           return Container(
+              //             width: 8.0,
+              //             height: 8.0,
+              //             margin: const EdgeInsets.symmetric(
+              //                 vertical: 16.0, horizontal: 4.0),
+              //             decoration: BoxDecoration(
+              //               shape: BoxShape.circle,
+              //               color: _current == index
+              //                   ? const Color.fromRGBO(0, 0, 0, 0.9)
+              //                   : disabledTextColor.withOpacity(0.5),
+              //             ),
+              //           );
+              //         }).toList(),
+              //       ),
+              //     )
+              //   ],
+              // ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: const [
+                  Text(
+                    'Suggestions',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    'Clear',
+                    style: TextStyle(color: Colors.red),
                   )
                 ],
               ),
@@ -164,7 +194,25 @@ class _ExploreBodyState extends State<ExploreBody> {
                   itemBuilder: (context, index) {
                     return Column(
                       children: <Widget>[
-                        titleRows[index],
+                        ListTile(
+                            leading: CircleAvatar(
+                              backgroundImage: AssetImage(users[index].image),
+                            ),
+                            title: Text(
+                              users[index].name,
+                              style: TextStyle(color: secondaryColor),
+                            ),
+                            subtitle: Text(
+                              users[index].username,
+                              style: const TextStyle(),
+                            ),
+                            trailing: CustomTextButtonIntr(
+                                onTap: () {},
+                                isGradient: true,
+                                width: 120,
+                                text: 'Follow')),
+
+                        // titleRows[index],
                         thumbLists[index],
                       ],
                     );

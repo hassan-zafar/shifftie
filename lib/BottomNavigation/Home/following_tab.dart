@@ -17,7 +17,9 @@ class FollowingTabPage extends StatelessWidget {
 
   final int? variable;
 
-  const FollowingTabPage(this.videos, this.images, this.isFollowing, {Key? key, this.variable}) : super(key: key);
+  const FollowingTabPage(this.videos, this.images, this.isFollowing,
+      {Key? key, this.variable})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +34,10 @@ class FollowingTabBody extends StatefulWidget {
   final bool isFollowing;
   final int? variable;
 
-  const FollowingTabBody(this.videos, this.images, this.isFollowing, this.variable, {Key? key}) : super(key: key);
+  const FollowingTabBody(
+      this.videos, this.images, this.isFollowing, this.variable,
+      {Key? key})
+      : super(key: key);
 
   @override
   _FollowingTabBodyState createState() => _FollowingTabBodyState();
@@ -89,8 +94,8 @@ class _FollowingTabBodyState extends State<FollowingTabBody> {
                 await showModalBottomSheet(
                   shape: OutlineInputBorder(
                       borderSide: BorderSide(color: transparentColor),
-                      borderRadius:
-                          const BorderRadius.vertical(top: Radius.circular(16.0))),
+                      borderRadius: const BorderRadius.vertical(
+                          top: Radius.circular(16.0))),
                   context: context,
                   isScrollControlled: true,
                   isDismissible: false,
@@ -117,7 +122,12 @@ class VideoPage extends StatefulWidget {
   final bool? isFollowing;
 
   const VideoPage(this.video, this.image,
-      {Key? key, this.pageIndex, this.currentPageIndex, this.isPaused, this.isFollowing}) : super(key: key);
+      {Key? key,
+      this.pageIndex,
+      this.currentPageIndex,
+      this.isPaused,
+      this.isFollowing})
+      : super(key: key);
 
   @override
   _VideoPageState createState() => _VideoPageState();
@@ -175,6 +185,9 @@ class _VideoPageState extends State<VideoPage> with RouteAware {
     if (widget.pageIndex == widget.currentPageIndex &&
         !widget.isPaused! &&
         initialized) {
+      Stack(
+        children: [],
+      );
       _controller.play();
     } else {
       _controller.pause();
@@ -188,6 +201,7 @@ class _VideoPageState extends State<VideoPage> with RouteAware {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: Stack(
+        overflow: Overflow.visible,
         children: <Widget>[
           GestureDetector(
             onTap: () {
@@ -199,27 +213,37 @@ class _VideoPageState extends State<VideoPage> with RouteAware {
                 ? VideoPlayer(_controller)
                 : const SizedBox.shrink(),
           ),
+          Positioned(
+            top: 70,
+            left: -60,
+            child: InkWell(
+              onTap: () {
+                _controller.pause();
+                Navigator.pushNamed(context, PageRoutes.userProfilePage);
+              },
+              child: const CircleAvatar(
+                backgroundImage: AssetImage(
+                  'assets/images/user.webp',
+                ),
+                radius: 90,
+                child: CircleAvatar(
+                    backgroundColor: Colors.black38, child: Icon(Icons.share)),
+              ),
+            ),
+          ),
           Positioned.directional(
             textDirection: Directionality.of(context),
             end: -10.0,
             bottom: 80.0,
             child: Column(
               children: <Widget>[
-                InkWell(
-                  onTap: () {
-                    _controller.pause();
-                    Navigator.pushNamed(context, PageRoutes.userProfilePage);
-                  },
-                  child: const CircleAvatar(
-                      backgroundImage: AssetImage('assets/images/user.webp')),
-                ),
-                CustomButton(
-                  ImageIcon(
-                    const AssetImage('assets/icons/ic_views.png'),
-                    color: secondaryColor,
-                  ),
-                  '1.2k',
-                ),
+                // CustomButton(
+                //   ImageIcon(
+                //     const AssetImage('assets/icons/ic_views.png'),
+                //     color: secondaryColor,
+                //   ),
+                //   '1.2k',
+                // ),
                 CustomButton(
                     ImageIcon(
                       const AssetImage('assets/icons/ic_comment.png'),
@@ -239,10 +263,6 @@ class _VideoPageState extends State<VideoPage> with RouteAware {
                       isLiked = !isLiked;
                     });
                   },
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8.0),
-                  child: RotatedImage(widget.image),
                 ),
               ],
             ),
@@ -274,21 +294,29 @@ class _VideoPageState extends State<VideoPage> with RouteAware {
             textDirection: Directionality.of(context),
             start: 12.0,
             bottom: 72.0,
-            child: RichText(
-              text: TextSpan(children: [
-                TextSpan(
-                    text: '@emiliwilliamson\n',
-                    style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: 0.5)),
-                TextSpan(text: locale.comment8),
-                TextSpan(
-                    text: '  ${locale.seeMore}',
-                    style: TextStyle(
-                        color: secondaryColor.withOpacity(0.5),
-                        fontStyle: FontStyle.italic))
-              ]),
+            child: Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  child: RotatedImage(widget.image),
+                ),
+                RichText(
+                  text: TextSpan(children: [
+                    TextSpan(
+                        text: '@emiliwilliamson\n',
+                        style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 0.5)),
+                    TextSpan(text: locale.comment8),
+                    TextSpan(
+                        text: '  ${locale.seeMore}',
+                        style: TextStyle(
+                            color: secondaryColor.withOpacity(0.5),
+                            fontStyle: FontStyle.italic))
+                  ]),
+                ),
+              ],
             ),
           )
         ],

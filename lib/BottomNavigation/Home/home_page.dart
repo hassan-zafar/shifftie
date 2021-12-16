@@ -71,6 +71,7 @@ class _HomeBodyState extends State<HomeBody> {
                     indicator: BoxDecoration(color: transparentColor),
                     tabs: tabs,
                   ),
+                  
                   Positioned.directional(
                     textDirection: Directionality.of(context),
                     top: 14,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shifftie/BottomNavigation/Home/following_tab.dart';
+import 'package:shifftie/BottomNavigation/Home/home_new_user_page.dart';
 import 'package:shifftie/Locale/locale.dart';
 import 'package:shifftie/Theme/colors.dart';
 
@@ -47,8 +48,8 @@ class _HomeBodyState extends State<HomeBody> {
   @override
   Widget build(BuildContext context) {
     List<Tab> tabs = [
-      Tab(text: AppLocalizations.of(context)!.following),
-      Tab(text: AppLocalizations.of(context)!.related),
+      const Tab(text: 'Following'),
+      const Tab(text: '|      Trending'),
     ];
     return DefaultTabController(
       length: tabs.length,
@@ -57,7 +58,9 @@ class _HomeBodyState extends State<HomeBody> {
           TabBarView(
             children: <Widget>[
               FollowingTabPage(videos1, imagesInDisc1, false),
-              FollowingTabPage(videos2, imagesInDisc2, true),
+              HomeNewUserFollowPage(
+                  // videos2, imagesInDisc2, true
+                  ),
             ],
           ),
           SafeArea(
@@ -65,13 +68,16 @@ class _HomeBodyState extends State<HomeBody> {
               alignment: Alignment.topLeft,
               child: Stack(
                 children: [
-                  TabBar(
-                    isScrollable: true,
-                    labelStyle: Theme.of(context).textTheme.bodyText1,
-                    indicator: BoxDecoration(color: transparentColor),
-                    tabs: tabs,
+                  Positioned(
+                    top: 10,
+                    left: MediaQuery.of(context).size.width * 0.18,
+                    child: TabBar(
+                      isScrollable: true,
+                      labelStyle: Theme.of(context).textTheme.bodyText1,
+                      indicator: BoxDecoration(color: transparentColor),
+                      tabs: tabs,
+                    ),
                   ),
-                  
                   Positioned.directional(
                     textDirection: Directionality.of(context),
                     top: 14,

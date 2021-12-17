@@ -3,7 +3,10 @@ import 'dart:math' as math;
 import 'package:flutter_svg/svg.dart';
 import 'package:shifftie/Auth/Login/UI/login_page.dart';
 import 'package:shifftie/Auth/Registration/UI/register_page.dart';
+import 'package:shifftie/Auth/pronoun_page.dart';
+import 'package:shifftie/BottomNavigation/Home/home_new_user_page.dart';
 import 'package:shifftie/Components/custom_text_button.dart';
+import 'package:shifftie/Screens/gallery.dart';
 import 'package:shifftie/Theme/colors.dart';
 import 'package:shifftie/utilities/custom_unicorn_button.dart';
 import 'package:shifftie/utilities/utilities.dart';
@@ -192,7 +195,11 @@ class WelcomescreenWidget extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: MyOutlinedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const HomeNewUserFollowPage(),
+                ));
+              },
               gradient: LinearGradient(colors: [btnGradLeft, btnGradRight]),
               child: Text(
                 'Sign Up',

@@ -160,7 +160,9 @@ class _ActivityPageState extends State<ActivityPage> {
                           CustomTextButton(
                               onTap: () {},
                               isGradient: true,
+                              isdropDown: true,
                               text: 'All Activity',
+                              text2: '',
                               borderRadius: BorderRadius.only(
                                   topLeft:
                                       Radius.circular(Utilities.borderRadius),
@@ -170,18 +172,24 @@ class _ActivityPageState extends State<ActivityPage> {
                           CustomTextButton(
                               onTap: () {},
                               enableMargin: false,
+                              isdropDown: true,
                               isGradient: false,
+                              text2: '7',
                               text: 'System'),
                           CustomTextButton(
                               onTap: () {},
                               isGradient: false,
+                              isdropDown: true,
                               enableMargin: false,
+                              text2: '23',
                               text: 'Message'),
                           CustomTextButton(
                             onTap: () {},
                             isGradient: false,
+                            isdropDown: true,
                             text: 'Content',
                             enableMargin: false,
+                            text2: '14',
                             borderRadius: BorderRadius.only(
                                 bottomLeft:
                                     Radius.circular(Utilities.borderRadius),

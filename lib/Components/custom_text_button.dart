@@ -9,19 +9,24 @@ class CustomTextButton extends StatelessWidget {
       required this.isGradient,
       required this.text,
       this.paddingHor,
+      this.text2,
       this.enableMargin = true,
       this.textAlign,
       this.borderRadius,
+      this.fontSize = 20,
       this.paddingVert,
-      // this.isdropDown,
+      this.isdropDown = false,
       Key? key})
       : super(key: key);
   final String text;
+  final String? text2;
+
   final double? paddingVert;
+  final double fontSize;
   final double? paddingHor;
   final borderRadius;
   final TextAlign? textAlign;
-  bool isdropDown = false;
+  bool isdropDown;
   final bool enableMargin;
   bool? isGradient = true;
   final VoidCallback onTap;
@@ -51,6 +56,7 @@ class CustomTextButton extends StatelessWidget {
         ),
         child: isdropDown
             ? Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
                     text,
@@ -58,7 +64,16 @@ class CustomTextButton extends StatelessWidget {
                     style: TextStyle(
                       color: lightTextColor,
                       letterSpacing: 1,
-                      fontSize: 20,
+                      fontSize: fontSize,
+                    ),
+                  ),
+                  Text(
+                    text2!,
+                    textAlign: textAlign ?? TextAlign.center,
+                    style: TextStyle(
+                      color: disabledTextColor,
+                      letterSpacing: 1,
+                      fontSize: fontSize,
                     ),
                   ),
                 ],
@@ -68,8 +83,8 @@ class CustomTextButton extends StatelessWidget {
                 textAlign: textAlign ?? TextAlign.center,
                 style: TextStyle(
                   color: lightTextColor,
-                  letterSpacing: 1,
-                  fontSize: 20,
+                  // letterSpacing: 1,
+                  fontSize: fontSize,
                 ),
               ),
       ),

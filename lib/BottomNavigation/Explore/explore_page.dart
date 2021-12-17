@@ -7,6 +7,7 @@ import 'package:shifftie/Components/titleRow.dart';
 import 'package:shifftie/Locale/locale.dart';
 import 'package:shifftie/Routes/routes.dart';
 import 'package:shifftie/Theme/colors.dart';
+import 'package:shifftie/utilities/utilities.dart';
 
 List<String> dance = [
   'assets/thumbnails/dance/Layer 951.png',
@@ -98,14 +99,14 @@ class _ExploreBodyState extends State<ExploreBody> {
       padding: const EdgeInsets.only(bottom: 60.0, top: 20.0),
       child: Scaffold(
         appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(72.0),
+          preferredSize: const Size.fromHeight(120.0),
           child: Container(
             margin: const EdgeInsets.all(20.0),
             padding:
                 const EdgeInsets.symmetric(vertical: 0.0, horizontal: 24.0),
             decoration: BoxDecoration(
-              color: darkColor,
-              borderRadius: BorderRadius.circular(25.0),
+              color: textFieldColor,
+              borderRadius: BorderRadius.circular(Utilities.borderRadius),
             ),
             child: TextField(
               readOnly: true,
@@ -172,18 +173,21 @@ class _ExploreBodyState extends State<ExploreBody> {
               //     )
               //   ],
               // ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
-                  Text(
-                    'Suggestions',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    'Clear',
-                    style: TextStyle(color: Colors.red),
-                  )
-                ],
+              Padding(
+                padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: const [
+                    Text(
+                      'Suggestions',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      'Clear',
+                      style: TextStyle(color: Colors.red),
+                    )
+                  ],
+                ),
               ),
               ListView.builder(
                   physics: const NeverScrollableScrollPhysics(),

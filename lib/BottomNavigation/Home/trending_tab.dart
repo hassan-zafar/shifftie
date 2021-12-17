@@ -237,6 +237,31 @@ class _VideoPageState extends State<VideoPage> with RouteAware {
               ),
             ),
           ),
+          Positioned(
+            top: 70,
+            right: -70,
+            child: InkWell(
+              onTap: () {
+                _controller.pause();
+                Navigator.pushNamed(context, PageRoutes.userProfilePage);
+              },
+              child: CircleAvatar(
+                backgroundImage: const AssetImage(
+                  'assets/images/user.webp',
+                ),
+                radius: 90,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    CircleAvatar(
+                        backgroundColor: Colors.black38,
+                        child: Icon(Icons.reply)),
+                    Text('  Previous Shift'),
+                  ],
+                ),
+              ),
+            ),
+          ),
           Positioned.directional(
               textDirection: Directionality.of(context),
               end: 60.0,
@@ -389,15 +414,16 @@ class _VideoPageState extends State<VideoPage> with RouteAware {
           ),
           Positioned.directional(
             textDirection: Directionality.of(context),
-            start: 12.0,
-            bottom: 72.0,
-            child: Row(
+            start: 70.0,
+            top: 72.0,
+            child: Column(
               children: [
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
                   child: RotatedImage(widget.image),
                 ),
                 RichText(
+                  textAlign: TextAlign.center,
                   text: TextSpan(children: [
                     TextSpan(
                         text: '@emiliwilliamson\n',
@@ -413,6 +439,13 @@ class _VideoPageState extends State<VideoPage> with RouteAware {
                             fontStyle: FontStyle.italic))
                   ]),
                 ),
+                CustomTextButtonIntr(
+                    fontSize: 12,
+                    width: 120,
+                    height: 50,
+                    onTap: () {},
+                    isGradient: true,
+                    text: 'Subscribe \$9/Mo')
               ],
             ),
           )

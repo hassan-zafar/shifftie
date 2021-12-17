@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shifftie/Auth/interests_page.dart';
 import 'package:shifftie/Auth/login_navigator.dart';
 import 'package:shifftie/BottomNavigation/Home/comment_sheet.dart';
 import 'package:shifftie/Components/custom_button.dart';
@@ -312,14 +313,16 @@ class _VideoPageState extends State<VideoPage> with RouteAware {
                             fontSize: 16.0,
                             fontWeight: FontWeight.bold,
                             letterSpacing: 0.5)),
-                    TextSpan(text: locale.comment8),
-                    TextSpan(
-                        text: '  ${locale.seeMore}',
-                        style: TextStyle(
-                            color: secondaryColor.withOpacity(0.5),
-                            fontStyle: FontStyle.italic))
+                    // TextSpan(text: locale.comment8),
                   ]),
                 ),
+                CustomTextButtonIntr(
+                    fontSize: 12,
+                    width: 120,
+                    height: 50,
+                    onTap: () {},
+                    isGradient: true,
+                    text: 'Subscribe \$9/Mo')
               ],
             ),
           )

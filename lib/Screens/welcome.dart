@@ -159,19 +159,20 @@ class WelcomescreenWidget extends StatelessWidget {
                                   ]))),
                         ]))),
                 const Positioned(
-                    top: 536,
+                    top: 500,
                     left: 24,
                     child: Text(
-                      'Direct the Story. Shift the Ending.',
+                      'Direct the Story.\nShift the Ending.',
                       textAlign: TextAlign.left,
                       style: TextStyle(
-                          color: Color.fromRGBO(255, 255, 255, 1),
-                          fontFamily: 'Spartan',
-                          fontSize: 16,
-                          letterSpacing:
-                              0 /*percentages not used in flutter. defaulting to zero*/,
-                          fontWeight: FontWeight.normal,
-                          height: 1),
+                        color: Color.fromRGBO(255, 255, 255, 1),
+                        fontFamily: 'Spartan',
+                        fontSize: 26,
+                        letterSpacing:
+                            0 /*percentages not used in flutter. defaulting to zero*/,
+                        fontWeight: FontWeight.bold,
+                        // height: 1
+                      ),
                     )),
               ],
             ),

@@ -38,7 +38,7 @@ class _ShiftTabBarPageState extends State<ShiftTabBarPage> {
                 children: <Widget>[
                   const ShiftDetailsPage(),
                   TabGrid(
-                    food + food,
+                    food + food,isVote: true,
                     viewIcon: Icons.remove_red_eye,
                     views: '2.2k',
                     onTap: () => Navigator.pushNamed(

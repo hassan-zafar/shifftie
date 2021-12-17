@@ -41,78 +41,120 @@ class _PostInfoState extends State<PostInfo> {
         centerTitle: true,
       ),
       body: FadedSlideAnimation(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              EntryField(
-                prefix: FadedScaleAnimation(
-                  child: const CircleAvatar(
-                    backgroundImage: AssetImage('assets/images/user.webp'),
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                Row(
+                  children: [
+                    Image.asset(
+                      'assets/thumbnails/dance/Layer 952.png',
+                      height: 120,
+                      width: 80,
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: EntryField(
+                          // prefix: FadedScaleAnimation(
+                          //   child: const CircleAvatar(
+                          //     backgroundImage:
+                          //         AssetImage('assets/images/user.webp'),
+                          //   ),
+                          // ),
+                          label: '    ' +
+                              AppLocalizations.of(context)!.describeVideo!,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const EntryField(
+                  textCapitalization: TextCapitalization.words,
+                  label: 'Shifttie Title',
+                  keyboardType: TextInputType.emailAddress,
+                ),
+                const EntryField(
+                  textCapitalization: TextCapitalization.words,
+                  label: 'Short Description',
+                  keyboardType: TextInputType.emailAddress,
+                ),
+                const EntryField(
+                  textCapitalization: TextCapitalization.words,
+                  label: 'Poll Question',
+                  padding: EdgeInsets.all(4),
+                  keyboardType: TextInputType.emailAddress,
+                ),
+                const EntryField(
+                  textCapitalization: TextCapitalization.words,
+                  label: 'Poll Answer',
+                  keyboardType: TextInputType.emailAddress,
+                ),
+                const EntryField(
+                  textCapitalization: TextCapitalization.words,
+                  label: 'Poll Answer',
+                  keyboardType: TextInputType.emailAddress,
+                ),
+                Text(
+                  AppLocalizations.of(context)!.selectCover! + '\n',
+                  style: TextStyle(color: secondaryColor, fontSize: 18),
+                ),
+                ListView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: thumbLists.length,
+                    itemBuilder: (context, index) {
+                      return thumbLists[index];
+                    }),
+                const SizedBox(height: 12.0),
+                ListTile(
+                  title: Text(
+                    AppLocalizations.of(context)!.commentOff!,
+                    style: TextStyle(color: secondaryColor),
+                  ),
+                  trailing: Switch(
+                    value: isSwitched1,
+                    onChanged: (value) {
+                      setState(() {
+                        isSwitched1 = value;
+                        //print(isSwitched1);
+                      });
+                    },
+                    inactiveThumbColor: disabledTextColor,
+                    inactiveTrackColor: darkColor,
+                    activeTrackColor: darkColor,
+                    activeColor: mainColor,
                   ),
                 ),
-                label: '    ' + AppLocalizations.of(context)!.describeVideo!,
-              ),
-              const Spacer(),
-              Text(
-                AppLocalizations.of(context)!.selectCover! + '\n',
-                style: TextStyle(color: secondaryColor, fontSize: 18),
-              ),
-              ListView.builder(
-                  physics: const NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  itemCount: thumbLists.length,
-                  itemBuilder: (context, index) {
-                    return thumbLists[index];
-                  }),
-              const SizedBox(height: 12.0),
-              ListTile(
-                title: Text(
-                  AppLocalizations.of(context)!.commentOff!,
-                  style: TextStyle(color: secondaryColor),
+                ListTile(
+                  title: Text(
+                    AppLocalizations.of(context)!.saveToGallery!,
+                    style: TextStyle(color: secondaryColor),
+                  ),
+                  trailing: Switch(
+                    value: isSwitched2,
+                    onChanged: (value) {
+                      setState(() {
+                        isSwitched2 = value;
+                        //print(isSwitched2);
+                      });
+                    },
+                    inactiveThumbColor: disabledTextColor,
+                    inactiveTrackColor: darkColor,
+                    activeTrackColor: darkColor,
+                    activeColor: mainColor,
+                  ),
                 ),
-                trailing: Switch(
-                  value: isSwitched1,
-                  onChanged: (value) {
-                    setState(() {
-                      isSwitched1 = value;
-                      //print(isSwitched1);
-                    });
+                CustomButton(
+                  text: AppLocalizations.of(context)!.postVideo,
+                  onPressed: () {
+                    Phoenix.rebirth(context);
                   },
-                  inactiveThumbColor: disabledTextColor,
-                  inactiveTrackColor: darkColor,
-                  activeTrackColor: darkColor,
-                  activeColor: mainColor,
-                ),
-              ),
-              ListTile(
-                title: Text(
-                  AppLocalizations.of(context)!.saveToGallery!,
-                  style: TextStyle(color: secondaryColor),
-                ),
-                trailing: Switch(
-                  value: isSwitched2,
-                  onChanged: (value) {
-                    setState(() {
-                      isSwitched2 = value;
-                      //print(isSwitched2);
-                    });
-                  },
-                  inactiveThumbColor: disabledTextColor,
-                  inactiveTrackColor: darkColor,
-                  activeTrackColor: darkColor,
-                  activeColor: mainColor,
-                ),
-              ),
-              const Spacer(),
-              CustomButton(
-                text: AppLocalizations.of(context)!.postVideo,
-                onPressed: () {
-                  Phoenix.rebirth(context);
-                },
-              )
-            ],
+                )
+              ],
+            ),
           ),
         ),
         beginOffset: const Offset(0, 0.3),

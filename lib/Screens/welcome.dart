@@ -42,6 +42,14 @@ class WelcomescreenWidget extends StatelessWidget {
                               BorderRadius.all(Radius.elliptical(218, 220)),
                         ))),
                 Positioned(
+                    top: 13,
+                    left: 0,
+                    child: Image.asset(
+                      'assets/images/Logo_white.png',
+                      height: 110,
+                      fit: BoxFit.fill,
+                    )),
+                Positioned(
                     top: 73,
                     left: 184,
                     child: Container(

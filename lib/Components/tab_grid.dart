@@ -4,6 +4,7 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:shifftie/Auth/interests_page.dart';
 import 'package:shifftie/BottomNavigation/Home/following_tab.dart';
 import 'package:shifftie/BottomNavigation/Home/home_page.dart';
+import 'package:shifftie/Shifts/ShiftExpand/vote_expand_page.dart';
 import 'package:shifftie/utilities/utilities.dart';
 
 class Grid {
@@ -33,9 +34,15 @@ class TabGrid extends StatelessWidget {
   final Function? onTap;
   final IconData? viewIcon;
   final String? views;
+  final bool isVote;
 
   const TabGrid(this.list,
-      {Key? key, this.icon, this.onTap, this.viewIcon, this.views})
+      {Key? key,
+      this.icon,
+      this.onTap,
+      this.viewIcon,
+      this.isVote = false,
+      this.views})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -46,12 +53,23 @@ class TabGrid extends StatelessWidget {
           return Padding(
             padding: const EdgeInsets.all(12.0),
             child: GestureDetector(
-              onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => FollowingTabPage(
-                          videos1, imagesInDisc1, false,
-                          variable: 1))),
+              onTap: () {
+                if (isVote) {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => VoteDetailsPage(
+                                image: list![index],
+                              )));
+                } else {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => FollowingTabPage(
+                              videos1, imagesInDisc1, false,
+                              variable: 1)));
+                }
+              },
               child: FadedScaleAnimation(
                 child: Stack(
                   alignment: Alignment.center,

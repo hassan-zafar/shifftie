@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:shifftie/BottomNavigation/Explore/explore_page.dart';
 import 'package:shifftie/BottomNavigation/Home/home_page.dart';
 import 'package:shifftie/BottomNavigation/MyProfile/my_profile_page.dart';
-import 'package:shifftie/DashBoard/ActivityStats/activity_stats_page.dart';
 import 'package:shifftie/Locale/locale.dart';
 import 'package:shifftie/Routes/routes.dart';
-import 'package:shifftie/BottomNavigation/Notifications/notification_messages.dart';
 import 'package:shifftie/Shifts/shifts_follow_screen.dart';
 import 'package:shifftie/Theme/colors.dart';
 import 'package:shifftie/Theme/style.dart';
-import 'package:shifftie/main.dart';
+
+import 'Activity/activity_page.dart';
 
 class BottomNavigation extends StatefulWidget {
   const BottomNavigation({Key? key}) : super(key: key);
@@ -26,7 +25,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
     const ExplorePage(),
     Container(),
     const ShiftYouFollowScreen(),
-    const NotificationMessages(),
+    const ActivityPage(),
     const MyProfilePage(),
   ];
 

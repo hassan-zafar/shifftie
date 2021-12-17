@@ -4,11 +4,11 @@ import 'package:shifftie/Locale/locale.dart';
 import 'package:shifftie/Routes/routes.dart';
 import 'package:shifftie/Theme/colors.dart';
 
-class NotificationMessages extends StatefulWidget {
-  const NotificationMessages({Key? key}) : super(key: key);
+class ActivityPage extends StatefulWidget {
+  const ActivityPage({Key? key}) : super(key: key);
 
   @override
-  _NotificationMessagesState createState() => _NotificationMessagesState();
+  _ActivityPageState createState() => _ActivityPageState();
 }
 
 class Notif {
@@ -23,7 +23,7 @@ class Notif {
       this.name, this.desc, this.time, this.image, this.notifImage, this.icon);
 }
 
-class _NotificationMessagesState extends State<NotificationMessages> {
+class _ActivityPageState extends State<ActivityPage> {
   @override
   Widget build(BuildContext context) {
     var locale = AppLocalizations.of(context)!;
@@ -77,7 +77,7 @@ class _NotificationMessagesState extends State<NotificationMessages> {
             child: TabBar(
               indicator: BoxDecoration(color: transparentColor),
               isScrollable: true,
-              labelColor: mainColor,
+              labelColor: lightTextColor,
               labelStyle: Theme.of(context).textTheme.headline6,
               unselectedLabelColor: disabledTextColor,
               tabs: <Widget>[
@@ -96,7 +96,8 @@ class _NotificationMessagesState extends State<NotificationMessages> {
               slideCurve: Curves.linearToEaseOut,
             ),
             FadedSlideAnimation(
-              child: MessagesPage(notification: notification, messages: messages),
+              child:
+                  MessagesPage(notification: notification, messages: messages),
               beginOffset: const Offset(0, 0.3),
               endOffset: const Offset(0, 0),
               slideCurve: Curves.linearToEaseOut,

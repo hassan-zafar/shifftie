@@ -215,19 +215,26 @@ class _VideoPageState extends State<VideoPage> with RouteAware {
           ),
           Positioned(
             top: 70,
-            left: -60,
+            left: -40,
             child: InkWell(
               onTap: () {
                 _controller.pause();
                 Navigator.pushNamed(context, PageRoutes.userProfilePage);
               },
-              child: const CircleAvatar(
-                backgroundImage: AssetImage(
+              child: CircleAvatar(
+                backgroundImage: const AssetImage(
                   'assets/images/user.webp',
                 ),
                 radius: 90,
-                child: CircleAvatar(
-                    backgroundColor: Colors.black38, child: Icon(Icons.share)),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    CircleAvatar(
+                        backgroundColor: Colors.black38,
+                        child: Icon(Icons.share)),
+                    Text('  Previous Shift'),
+                  ],
+                ),
               ),
             ),
           ),

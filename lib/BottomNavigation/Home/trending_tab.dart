@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shifftie/Auth/interests_page.dart';
 import 'package:shifftie/Auth/login_navigator.dart';
 import 'package:shifftie/BottomNavigation/Home/comment_sheet.dart';
 import 'package:shifftie/Components/custom_button.dart';
@@ -6,6 +7,7 @@ import 'package:shifftie/Components/rotated_image.dart';
 import 'package:shifftie/Locale/locale.dart';
 import 'package:shifftie/Routes/routes.dart';
 import 'package:shifftie/Theme/colors.dart';
+import 'package:shifftie/Theme/constants.dart';
 import 'package:video_player/video_player.dart';
 
 RouteObserver<PageRoute> routeObserver = RouteObserver<PageRoute>();
@@ -235,18 +237,97 @@ class _VideoPageState extends State<VideoPage> with RouteAware {
               ),
             ),
           ),
-          Positioned(
+          Positioned.directional(
+              textDirection: Directionality.of(context),
+              end: 60.0,
+              bottom: 150.0,
               child: Container(
-            child: Column(
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                      gradient:
-                          LinearGradient(colors: [btnGradLeft, btnGradRight])),
-                )
-              ],
-            ),
-          )),
+                width: 280,
+                height: 170,
+                decoration: const BoxDecoration(
+                  color: Colors.black54,
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(8),
+                      topRight: Radius.circular(8)),
+                ),
+                child: Column(
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                          borderRadius: const BorderRadius.only(
+                              topLeft: Radius.circular(8),
+                              topRight: Radius.circular(8)),
+                          gradient: LinearGradient(
+                              colors: [btnGradLeft, btnGradRight])),
+                      width: double.maxFinite,
+                      child: const Padding(
+                        padding: EdgeInsets.all(4.0),
+                        child: Text(
+                          'What should our next shift include',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontSize: 14),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          CustomTextButtonIntr(
+                            onTap: () {},
+                            isGradient: true,
+                            paddingHor: 8,
+                            width: 120,
+                            height: 40,
+                            paddingVert: 8,
+                            text: "I want you to eat keyboard",
+                            fontSize: 12,
+                          ),
+                          CustomTextButtonIntr(
+                            onTap: () {},
+                            isGradient: false,
+                            paddingHor: 8,
+                            width: 120,
+                            height: 40,
+                            paddingVert: 8,
+                            text: "I want you to eat keyboard",
+                            fontSize: 12,
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          CustomTextButtonIntr(
+                            onTap: () {},
+                            isGradient: false,
+                            paddingHor: 8,
+                            width: 120,
+                            height: 40,
+                            paddingVert: 8,
+                            text: "I want you to eat keyboard",
+                            fontSize: 12,
+                          ),
+                          CustomTextButtonIntr(
+                            onTap: () {},
+                            isGradient: false,
+                            paddingHor: 8,
+                            width: 120,
+                            height: 40,
+                            paddingVert: 8,
+                            text: "I want you to eat keyboard",
+                            fontSize: 12,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              )),
           Positioned.directional(
             textDirection: Directionality.of(context),
             end: -10.0,

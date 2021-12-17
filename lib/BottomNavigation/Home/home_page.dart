@@ -59,7 +59,7 @@ class _HomeBodyState extends State<HomeBody> {
           TabBarView(
             children: <Widget>[
               FollowingTabPage(videos1, imagesInDisc1, false),
-              TrendingTabPage(videos1, imagesInDisc1, false)
+              TrendingTabPage(videos2, imagesInDisc1, true)
               //  HomeNewUserFollowPage(
               //     // videos2, imagesInDisc2, true
               //     ),

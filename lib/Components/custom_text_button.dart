@@ -9,12 +9,20 @@ class CustomTextButton extends StatelessWidget {
       required this.isGradient,
       required this.text,
       this.paddingHor,
+      this.enableMargin = true,
+      this.textAlign,
+      this.borderRadius,
       this.paddingVert,
+      // this.isdropDown,
       Key? key})
       : super(key: key);
   final String text;
   final double? paddingVert;
   final double? paddingHor;
+  final borderRadius;
+  final TextAlign? textAlign;
+  bool isdropDown = false;
+  final bool enableMargin;
   bool? isGradient = true;
   final VoidCallback onTap;
   @override
@@ -22,7 +30,9 @@ class CustomTextButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        margin: EdgeInsets.symmetric(vertical: Utilities.padding / 2),
+        margin: enableMargin
+            ? EdgeInsets.symmetric(vertical: Utilities.padding / 2)
+            : null,
         padding: EdgeInsets.symmetric(
           vertical: paddingVert ?? Utilities.padding,
           horizontal: paddingHor ?? Utilities.padding * 3,
@@ -35,17 +45,33 @@ class CustomTextButton extends StatelessWidget {
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight)
               : null,
-          borderRadius: BorderRadius.circular(Utilities.borderRadius),
+          borderRadius: enableMargin
+              ? BorderRadius.circular(Utilities.borderRadius)
+              : borderRadius,
         ),
-        child: Text(
-          text,
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            color: lightTextColor,
-            letterSpacing: 1,
-            fontSize: 20,
-          ),
-        ),
+        child: isdropDown
+            ? Row(
+                children: [
+                  Text(
+                    text,
+                    textAlign: textAlign ?? TextAlign.center,
+                    style: TextStyle(
+                      color: lightTextColor,
+                      letterSpacing: 1,
+                      fontSize: 20,
+                    ),
+                  ),
+                ],
+              )
+            : Text(
+                text,
+                textAlign: textAlign ?? TextAlign.center,
+                style: TextStyle(
+                  color: lightTextColor,
+                  letterSpacing: 1,
+                  fontSize: 20,
+                ),
+              ),
       ),
     );
   }

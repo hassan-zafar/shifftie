@@ -24,7 +24,7 @@ class _ShiftDetailsPageState extends State<ShiftDetailsPage> {
     ThumbList(food),
   ];
 
-  int _current = 0;
+  final int _current = 0;
   @override
   Widget build(BuildContext context) {
     var locale = AppLocalizations.of(context)!;
@@ -129,7 +129,7 @@ class _ShiftDetailsPageState extends State<ShiftDetailsPage> {
           Positioned(
             bottom: 0,
             child: Container(
-              padding: EdgeInsets.only(bottom: 15, top: 20),
+              padding: const EdgeInsets.only(bottom: 15, top: 20),
               decoration: const BoxDecoration(
                 gradient: LinearGradient(
                   colors: [

@@ -1,9 +1,10 @@
-import 'package:animation_wrappers/animation_wrappers.dart';
 import 'package:flutter/material.dart';
+import 'package:shifftie/Components/custom_text_button.dart';
 import 'package:shifftie/Locale/locale.dart';
 import 'package:shifftie/Routes/routes.dart';
 import 'package:shifftie/Theme/colors.dart';
 import 'package:shifftie/Theme/constants.dart';
+import 'package:shifftie/utilities/utilities.dart';
 
 class ActivityPage extends StatefulWidget {
   const ActivityPage({Key? key}) : super(key: key);
@@ -25,6 +26,8 @@ class Notif {
 }
 
 class _ActivityPageState extends State<ActivityPage> {
+  bool enableAnimatedContainer = false;
+
   @override
   Widget build(BuildContext context) {
     var locale = AppLocalizations.of(context)!;
@@ -71,46 +74,156 @@ class _ActivityPageState extends State<ActivityPage> {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-        appBar: AppBar(
-          titleSpacing: 0.0,
-          title: Align(
-            alignment: Alignment.centerLeft,
-            child: TabBar(
-              indicator: BoxDecoration(color: transparentColor),
-              isScrollable: true,
-              labelColor: lightTextColor,
-              labelStyle: Theme.of(context).textTheme.headline6,
-              unselectedLabelColor: disabledTextColor,
-              tabs: <Widget>[
-                Tab(text: locale.notifications),
-                Tab(text: locale.messages),
-              ],
-            ),
+          appBar: AppBar(titleSpacing: 0.0, title: const Text('Activity')
+              // Align(
+              //   alignment: Alignment.centerLeft,
+              //   child: TabBar(
+              //     indicator: BoxDecoration(color: transparentColor),
+              //     isScrollable: true,
+              //     labelColor: lightTextColor,
+              //     labelStyle: Theme.of(context).textTheme.headline6,
+              //     unselectedLabelColor: disabledTextColor,
+              //     tabs: <Widget>[
+              //       Tab(text: locale.notifications),
+              //       Tab(text: locale.messages),
+              //     ],
+              //   ),
+              // ),
+              ),
+          body: ListView(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: InkWell(
+                        onTap: () {
+                          setState(() {
+                            enableAnimatedContainer = !enableAnimatedContainer;
+                          });
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.all(12.0),
+                          decoration: BoxDecoration(
+                              color: textFieldColor,
+                              borderRadius: borderRadius),
+                          child: Row(
+                            children: [
+                              const Text('All Activity'),
+                              enableAnimatedContainer
+                                  ? Icon(
+                                      Icons.arrow_drop_up,
+                                      color: lightTextColor,
+                                    )
+                                  : Icon(
+                                      Icons.arrow_drop_down,
+                                      color: lightTextColor,
+                                    )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: Container(
+                        padding: const EdgeInsets.all(6.0),
+                        decoration: BoxDecoration(borderRadius: borderRadius),
+                        child: TextField(
+                          style: TextStyle(color: lightTextColor),
+                          decoration: InputDecoration(
+                              hintText: 'Search',
+                              border: InputBorder.none,
+                              hintStyle: TextStyle(color: lightTextColor),
+                              fillColor: textFieldColor,
+                              filled: true),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              AnimatedContainer(
+                duration: const Duration(seconds: 1),
+                width: MediaQuery.of(context).size.width,
+                decoration: BoxDecoration(borderRadius: borderRadius),
+                margin: const EdgeInsets.all(8),
+                // padding: EdgeInsets.all(8),
+                child: enableAnimatedContainer
+                    ? Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          CustomTextButton(
+                              onTap: () {},
+                              isGradient: true,
+                              text: 'All Activity',
+                              borderRadius: BorderRadius.only(
+                                  topLeft:
+                                      Radius.circular(Utilities.borderRadius),
+                                  topRight:
+                                      Radius.circular(Utilities.borderRadius)),
+                              enableMargin: false),
+                          CustomTextButton(
+                              onTap: () {},
+                              enableMargin: false,
+                              isGradient: false,
+                              text: 'System'),
+                          CustomTextButton(
+                              onTap: () {},
+                              isGradient: false,
+                              enableMargin: false,
+                              text: 'Message'),
+                          CustomTextButton(
+                            onTap: () {},
+                            isGradient: false,
+                            text: 'Content',
+                            enableMargin: false,
+                            borderRadius: BorderRadius.only(
+                                bottomLeft:
+                                    Radius.circular(Utilities.borderRadius),
+                                bottomRight:
+                                    Radius.circular(Utilities.borderRadius)),
+                          ),
+                        ],
+                      )
+                    : Container(),
+              ),
+              const Text('notifications'),
+              NotificationPage(notification: notification),
+              const Text('Messages'),
+              MessagesPage(
+                notification: notification,
+                messages: messages,
+              ),
+            ],
+          )
+          // TabBarView(
+          //   children: <Widget>[
+          //     FadedSlideAnimation(
+          //       child: NotificationPage(notification: notification),
+          //       beginOffset: const Offset(0, 0.3),
+          //       endOffset: const Offset(0, 0),
+          //       slideCurve: Curves.linearToEaseOut,
+          //     ),
+          //     FadedSlideAnimation(
+          //       child:
+          //           MessagesPage(notification: notification, messages: messages),
+          //       beginOffset: const Offset(0, 0.3),
+          //       endOffset: const Offset(0, 0),
+          //       slideCurve: Curves.linearToEaseOut,
+          //     ),
+          //   ],
+          // ),
           ),
-        ),
-        body: TabBarView(
-          children: <Widget>[
-            FadedSlideAnimation(
-              child: NotificationPage(notification: notification),
-              beginOffset: const Offset(0, 0.3),
-              endOffset: const Offset(0, 0),
-              slideCurve: Curves.linearToEaseOut,
-            ),
-            FadedSlideAnimation(
-              child:
-                  MessagesPage(notification: notification, messages: messages),
-              beginOffset: const Offset(0, 0.3),
-              endOffset: const Offset(0, 0),
-              slideCurve: Curves.linearToEaseOut,
-            ),
-          ],
-        ),
-      ),
     );
   }
 }
 
-class NotificationPage extends StatelessWidget {
+class NotificationPage extends StatefulWidget {
   const NotificationPage({
     Key? key,
     required this.notification,
@@ -119,78 +232,43 @@ class NotificationPage extends StatelessWidget {
   final List<Notif> notification;
 
   @override
+  State<NotificationPage> createState() => _NotificationPageState();
+}
+
+class _NotificationPageState extends State<NotificationPage> {
+  @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Container(
-                  padding: const EdgeInsets.all(12.0),
-                  decoration: BoxDecoration(
-                      color: textFieldColor, borderRadius: borderRadius),
-                  child: Row(
-                    children: [
-                      Text('All Activity'),
-                      Icon(
-                        Icons.arrow_drop_down_rounded,
-                        color: lightTextColor,
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Container(
-                  padding: const EdgeInsets.all(6.0),
-                  decoration: BoxDecoration(borderRadius: borderRadius),
-                  child: TextField(
-                    style: TextStyle(color: lightTextColor),
-                    decoration: InputDecoration(
-                        hintText: 'Search',
-                        border: InputBorder.none,
-                        hintStyle: TextStyle(color: lightTextColor),
-                        fillColor: textFieldColor,
-                        filled: true),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
         ListView.builder(
-            itemCount: notification.length,
+            itemCount: widget.notification.length,
             shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) {
               return Stack(children: <Widget>[
                 ListTile(
                   leading: CircleAvatar(
-                      backgroundImage: AssetImage(notification[index].image)),
+                      backgroundImage:
+                          AssetImage(widget.notification[index].image)),
                   title: Text(
-                    notification[index].name,
+                    widget.notification[index].name,
                     style: TextStyle(color: secondaryColor),
                   ),
                   subtitle: RichText(
                       text: TextSpan(children: [
                     TextSpan(
-                      text: notification[index].desc! + ' ',
+                      text: widget.notification[index].desc! + ' ',
                       style: TextStyle(color: lightTextColor),
                     ),
                     TextSpan(
-                        text: notification[index].time,
+                        text: widget.notification[index].time,
                         style:
                             TextStyle(color: lightTextColor.withOpacity(0.15)))
                   ])),
                   trailing: SizedBox(
                     width: 50,
                     //height: 45,
-                    child: notification[index].icon == Icons.add
+                    child: widget.notification[index].icon == Icons.add
                         ? const CircleAvatar(
                             radius: 25.0,
                             backgroundImage:
@@ -201,7 +279,7 @@ class NotificationPage extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(5),
                                 image: DecorationImage(
                                     image: AssetImage(
-                                        notification[index].notifImage),
+                                        widget.notification[index].notifImage),
                                     fit: BoxFit.fill))),
                   ),
                   onTap: () =>
@@ -214,7 +292,7 @@ class NotificationPage extends StatelessWidget {
                     child: CircleAvatar(
                       backgroundColor: mainColor,
                       child: Icon(
-                        notification[index].icon,
+                        widget.notification[index].icon,
                         color: Colors.white,
                         size: 10,
                       ),
@@ -242,6 +320,7 @@ class MessagesPage extends StatelessWidget {
     return ListView.builder(
         itemCount: notification.length,
         shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
           return ListTile(
             leading: CircleAvatar(

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shifftie/BottomNavigation/Explore/explore_page.dart';
 import 'package:shifftie/Components/tab_grid.dart';
 import 'package:shifftie/Routes/routes.dart';
 import 'package:shifftie/Shifts/ShiftExpand/commentPage.dart';

@@ -185,9 +185,6 @@ class _VideoPageState extends State<VideoPage> with RouteAware {
     if (widget.pageIndex == widget.currentPageIndex &&
         !widget.isPaused! &&
         initialized) {
-      Stack(
-        children: [],
-      );
       _controller.play();
     } else {
       _controller.pause();
@@ -201,7 +198,7 @@ class _VideoPageState extends State<VideoPage> with RouteAware {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: Stack(
-        overflow: Overflow.visible,
+        clipBehavior: Clip.none,
         children: <Widget>[
           GestureDetector(
             onTap: () {

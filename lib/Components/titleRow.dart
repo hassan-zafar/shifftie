@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:shifftie/BottomNavigation/Explore/more_page.dart';
-import 'package:shifftie/Locale/locale.dart';
 import 'package:shifftie/Theme/colors.dart';
 
 class TitleRow extends StatelessWidget {

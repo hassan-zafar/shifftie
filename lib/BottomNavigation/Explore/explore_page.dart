@@ -66,7 +66,7 @@ class _ExploreBodyState extends State<ExploreBody> {
     ThumbList(food),
   ];
 
-  int _current = 0;
+  final int _current = 0;
   List<User> users = [
     User("George Smith", "@georgesmith", true, 'assets/user/user1.png'),
     User("Emili Wiliamson", "@emiliwilliamson", true, 'assets/user/user2.png'),

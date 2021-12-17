@@ -78,7 +78,7 @@ class RegisterPage extends StatelessWidget {
                     width: 140,
                     text: 'Facebook',
                     isGradient: false,
-                    color: Color(0xff1E81C9),
+                    color: const Color(0xff1E81C9),
                     onTap: () {
                       Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => const PronounPage(),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:shifftie/Locale/locale.dart';
 import 'package:shifftie/Routes/routes.dart';
 import 'package:shifftie/Theme/colors.dart';
+import 'package:shifftie/Theme/constants.dart';
 
 class ActivityPage extends StatefulWidget {
   const ActivityPage({Key? key}) : super(key: key);
@@ -119,62 +120,110 @@ class NotificationPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-        itemCount: notification.length,
-        shrinkWrap: true,
-        itemBuilder: (context, index) {
-          return Stack(children: <Widget>[
-            ListTile(
-              leading: CircleAvatar(
-                  backgroundImage: AssetImage(notification[index].image)),
-              title: Text(
-                notification[index].name,
-                style: TextStyle(color: secondaryColor),
-              ),
-              subtitle: RichText(
-                  text: TextSpan(children: [
-                TextSpan(
-                  text: notification[index].desc! + ' ',
-                  style: TextStyle(color: lightTextColor),
-                ),
-                TextSpan(
-                    text: notification[index].time,
-                    style: TextStyle(color: lightTextColor.withOpacity(0.15)))
-              ])),
-              trailing: SizedBox(
-                width: 50,
-                //height: 45,
-                child: notification[index].icon == Icons.add
-                    ? const CircleAvatar(
-                        radius: 25.0,
-                        backgroundImage: AssetImage('assets/images/user.webp'),
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Container(
+                  padding: const EdgeInsets.all(12.0),
+                  decoration: BoxDecoration(
+                      color: textFieldColor, borderRadius: borderRadius),
+                  child: Row(
+                    children: [
+                      Text('All Activity'),
+                      Icon(
+                        Icons.arrow_drop_down_rounded,
+                        color: lightTextColor,
                       )
-                    : Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                            image: DecorationImage(
-                                image:
-                                    AssetImage(notification[index].notifImage),
-                                fit: BoxFit.fill))),
-              ),
-              onTap: () =>
-                  Navigator.pushNamed(context, PageRoutes.userProfilePage),
-            ),
-            Positioned.directional(
-                textDirection: Directionality.of(context),
-                end: 55,
-                bottom: 10,
-                child: CircleAvatar(
-                  backgroundColor: mainColor,
-                  child: Icon(
-                    notification[index].icon,
-                    color: Colors.white,
-                    size: 10,
+                    ],
                   ),
-                  radius: 10,
-                )),
-          ]);
-        });
+                ),
+              ),
+            ),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Container(
+                  padding: const EdgeInsets.all(6.0),
+                  decoration: BoxDecoration(borderRadius: borderRadius),
+                  child: TextField(
+                    style: TextStyle(color: lightTextColor),
+                    decoration: InputDecoration(
+                        hintText: 'Search',
+                        border: InputBorder.none,
+                        hintStyle: TextStyle(color: lightTextColor),
+                        fillColor: textFieldColor,
+                        filled: true),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+        ListView.builder(
+            itemCount: notification.length,
+            shrinkWrap: true,
+            itemBuilder: (context, index) {
+              return Stack(children: <Widget>[
+                ListTile(
+                  leading: CircleAvatar(
+                      backgroundImage: AssetImage(notification[index].image)),
+                  title: Text(
+                    notification[index].name,
+                    style: TextStyle(color: secondaryColor),
+                  ),
+                  subtitle: RichText(
+                      text: TextSpan(children: [
+                    TextSpan(
+                      text: notification[index].desc! + ' ',
+                      style: TextStyle(color: lightTextColor),
+                    ),
+                    TextSpan(
+                        text: notification[index].time,
+                        style:
+                            TextStyle(color: lightTextColor.withOpacity(0.15)))
+                  ])),
+                  trailing: SizedBox(
+                    width: 50,
+                    //height: 45,
+                    child: notification[index].icon == Icons.add
+                        ? const CircleAvatar(
+                            radius: 25.0,
+                            backgroundImage:
+                                AssetImage('assets/images/user.webp'),
+                          )
+                        : Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(5),
+                                image: DecorationImage(
+                                    image: AssetImage(
+                                        notification[index].notifImage),
+                                    fit: BoxFit.fill))),
+                  ),
+                  onTap: () =>
+                      Navigator.pushNamed(context, PageRoutes.userProfilePage),
+                ),
+                Positioned.directional(
+                    textDirection: Directionality.of(context),
+                    end: 55,
+                    bottom: 10,
+                    child: CircleAvatar(
+                      backgroundColor: mainColor,
+                      child: Icon(
+                        notification[index].icon,
+                        color: Colors.white,
+                        size: 10,
+                      ),
+                      radius: 10,
+                    )),
+              ]);
+            }),
+      ],
+    );
   }
 }
 

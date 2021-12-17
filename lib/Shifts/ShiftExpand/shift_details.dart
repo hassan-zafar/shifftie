@@ -6,7 +6,7 @@ import 'package:shifftie/Components/titleRow.dart';
 import 'package:shifftie/Locale/locale.dart';
 import 'package:shifftie/Shifts/donations_sheet.dart';
 import 'package:shifftie/Theme/colors.dart';
-import 'package:shifftie/utilities/curstom_unicorn_button.dart';
+import 'package:shifftie/utilities/custom_unicorn_button.dart';
 import 'package:shifftie/utilities/utilities.dart';
 
 class ShiftDetailsPage extends StatefulWidget {

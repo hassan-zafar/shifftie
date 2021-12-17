@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shifftie/Auth/Registration/UI/register_page.dart';
+import 'package:shifftie/Auth/interests_page.dart';
 import 'package:shifftie/Auth/login_navigator.dart';
 import 'package:shifftie/Components/continue_button.dart';
 import 'package:shifftie/Components/custom_text_button.dart';
@@ -7,6 +8,8 @@ import 'package:shifftie/Components/entry_field.dart';
 import 'package:shifftie/Locale/locale.dart';
 import 'package:shifftie/Routes/routes.dart';
 import 'package:shifftie/Theme/colors.dart';
+
+import '../../pronoun_page.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -97,29 +100,49 @@ class _LoginBodyState extends State<LoginBody> {
             'Or',
             textAlign: TextAlign.center,
           ),
-          // const Spacer(),
-          CustomButton(
-            icon: Image.asset(
-              'assets/icons/ic_fb.png',
-              height: 20,
-            ),
-            text: '   ${AppLocalizations.of(context)!.facebookAccount}',
-            color: fbColor,
-            onPressed: () =>
-                Navigator.pushNamed(context, LoginRoutes.socialLogin),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              CustomTextButtonIntr(
+                  width: 140,
+                  text: 'Facebook',
+                  isGradient: false,
+                  color: const Color(0xff1E81C9),
+                  onTap: () {
+                    Navigator.pushNamed(context, PageRoutes.bottomNavigation);
+                  }),
+              CustomTextButtonIntr(
+                  text: 'Google',
+                  width: 140,
+                  color: Colors.green,
+                  isGradient: false,
+                  onTap: () {
+                    Navigator.pushNamed(context, PageRoutes.bottomNavigation);
+                  }),
+            ],
           ),
-          CustomButton(
-            icon: Image.asset(
-              'assets/icons/ic_ggl.png',
-              height: 20,
-            ),
-            text: '   ${AppLocalizations.of(context)!.googleAccount}',
-            color: secondaryColor,
-            textColor: darkColor,
-            onPressed: () =>
-                Navigator.pushNamed(context, LoginRoutes.socialLogin),
-          ),
-          //         const Spacer(),
+          // CustomButton(
+          //   icon: Image.asset(
+          //     'assets/icons/ic_fb.png',
+          //     height: 20,
+          //   ),
+          //   text: '   ${AppLocalizations.of(context)!.facebookAccount}',
+          //   color: fbColor,
+          //   onPressed: () =>
+          //       Navigator.pushNamed(context, LoginRoutes.socialLogin),
+          // ),
+          // CustomButton(
+          //   icon: Image.asset(
+          //     'assets/icons/ic_ggl.png',
+          //     height: 20,
+          //   ),
+          //   text: '   ${AppLocalizations.of(context)!.googleAccount}',
+          //   color: secondaryColor,
+          //   textColor: darkColor,
+          //   onPressed: () =>
+          //       Navigator.pushNamed(context, LoginRoutes.socialLogin),
+          // ),
+          // //         const Spacer(),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: InkWell(

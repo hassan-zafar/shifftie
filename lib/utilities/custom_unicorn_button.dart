@@ -75,7 +75,6 @@ class _GradientPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) {
-    // TODO: implement shouldRepaint
     throw UnimplementedError();
   }
 }
@@ -86,6 +85,8 @@ class MyOutlinedButton extends StatelessWidget {
   final ButtonStyle? style;
   final Gradient? gradient;
   final double thickness;
+  final double? height;
+  final double? width;
 
   const MyOutlinedButton({
     Key? key,
@@ -93,6 +94,8 @@ class MyOutlinedButton extends StatelessWidget {
     required this.child,
     this.style,
     this.gradient,
+    this.width,
+    this.height,
     this.thickness = 2,
   }) : super(key: key);
 
@@ -103,8 +106,8 @@ class MyOutlinedButton extends StatelessWidget {
           gradient: gradient,
           borderRadius: BorderRadius.circular(Utilities.borderRadius)),
       child: Container(
-        height: 68,
-        width: 158,
+        height: height ?? 68,
+        width: width ?? 158,
         decoration: BoxDecoration(
             color: mainColor,
             borderRadius: BorderRadius.circular(Utilities.borderRadius)),

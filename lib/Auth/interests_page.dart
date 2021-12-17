@@ -189,6 +189,7 @@ class CustomTextButtonIntr extends StatefulWidget {
       this.height,
       this.fontSize,
       this.width,
+      this.isInGridTile = false,
       this.color,
       Key? key})
       : super(key: key);
@@ -198,6 +199,7 @@ class CustomTextButtonIntr extends StatefulWidget {
   final double? height;
   final double? width;
   final double? fontSize;
+  bool isInGridTile;
   final Color? color;
   bool? isGradient = true;
   final VoidCallback onTap;
@@ -229,15 +231,34 @@ class _CustomTextButtonIntrState extends State<CustomTextButtonIntr> {
           borderRadius: BorderRadius.circular(Utilities.borderRadius),
         ),
         child: Center(
-          child: Text(
-            widget.text,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: lightTextColor,
-              letterSpacing: 1,
-              fontSize: widget.fontSize ?? 22,
-            ),
-          ),
+          child: widget.isInGridTile
+              ? Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Text(
+                      widget.text,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: lightTextColor,
+                        letterSpacing: 1,
+                        fontSize: widget.fontSize ?? 22,
+                      ),
+                    ),
+                    Icon(
+                      Icons.thumb_up,
+                      color: lightTextColor,
+                    )
+                  ],
+                )
+              : Text(
+                  widget.text,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: lightTextColor,
+                    letterSpacing: 1,
+                    fontSize: widget.fontSize ?? 22,
+                  ),
+                ),
         ),
       ),
     );

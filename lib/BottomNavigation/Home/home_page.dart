@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shifftie/BottomNavigation/Home/following_tab.dart';
 import 'package:shifftie/BottomNavigation/Home/home_new_user_page.dart';
+import 'package:shifftie/BottomNavigation/Home/trending_tab.dart';
 import 'package:shifftie/Locale/locale.dart';
 import 'package:shifftie/Theme/colors.dart';
 
@@ -58,9 +59,10 @@ class _HomeBodyState extends State<HomeBody> {
           TabBarView(
             children: <Widget>[
               FollowingTabPage(videos1, imagesInDisc1, false),
-              HomeNewUserFollowPage(
-                  // videos2, imagesInDisc2, true
-                  ),
+              TrendingTabPage(videos1, imagesInDisc1, false)
+              //  HomeNewUserFollowPage(
+              //     // videos2, imagesInDisc2, true
+              //     ),
             ],
           ),
           SafeArea(

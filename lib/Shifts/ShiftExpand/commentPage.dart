@@ -21,29 +21,34 @@ class Shift_CommentStatePage extends State<ShiftCommentPage> {
       Comment(
         image: 'assets/user/user1.png',
         name: 'Emili Williamson',
+        commentLikes: '1.2k',
         comment: locale.comment1,
         time: ' 5' + locale.minAgo!,
       ),
       Comment(
         image: 'assets/user/user2.png',
         name: 'Yella Jackson',
+        commentLikes: '1.1k',
         comment: locale.comment2,
         time: ' 15' + locale.minAgo!,
       ),
       Comment(
         image: 'assets/user/user3.png',
         name: 'Lisa devil',
+        commentLikes: '23',
         comment: locale.comment3,
         time: ' 1' + locale.dayAgo!,
       ),
       Comment(
         image: 'assets/user/user4.png',
         name: 'Emila Wattson',
+        commentLikes: '34',
         comment: locale.comment4,
         time: ' 2' + locale.dayAgo!,
       ),
       Comment(
         image: 'assets/user/user1.png',
+        commentLikes: '45',
         name: 'Emili Williamson',
         comment: locale.comment1,
         time: ' 5' + locale.minAgo!,
@@ -51,6 +56,7 @@ class Shift_CommentStatePage extends State<ShiftCommentPage> {
       Comment(
         image: 'assets/user/user2.png',
         name: 'Yella Jackson',
+        commentLikes: '2.4k',
         comment: locale.comment2,
         time: ' 15' + locale.minAgo!,
       ),
@@ -58,14 +64,15 @@ class Shift_CommentStatePage extends State<ShiftCommentPage> {
         image: 'assets/user/user3.png',
         name: 'Lisa devil',
         comment: locale.comment3,
+        commentLikes: '2.3k',
         time: ' 1' + locale.dayAgo!,
       ),
       Comment(
-        image: 'assets/user/user4.png',
-        name: 'Emila Wattson',
-        comment: locale.comment4,
-        time: ' 2' + locale.dayAgo!,
-      ),
+          image: 'assets/user/user4.png',
+          name: 'Emila Wattson',
+          comment: locale.comment4,
+          time: ' 2' + locale.dayAgo!,
+          commentLikes: '12'),
     ];
 
     return Stack(
@@ -103,17 +110,38 @@ class Shift_CommentStatePage extends State<ShiftCommentPage> {
                             subtitle: RichText(
                               text: TextSpan(children: [
                                 TextSpan(
-                                  text: comments[index].comment,
-                                ),
-                                TextSpan(
                                     text: comments[index].time,
                                     style: Theme.of(context).textTheme.caption),
                               ]),
                             ),
-                            trailing: ImageIcon(
-                              const AssetImage('assets/icons/ic_like.png'),
-                              color: disabledTextColor,
+                            trailing: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(
+                                  comments[index].commentLikes!,
+                                  style: const TextStyle(fontSize: 12),
+                                ),
+                                ImageIcon(
+                                  const AssetImage('assets/icons/ic_like.png'),
+                                  color: disabledTextColor,
+                                ),
+                              ],
                             ),
+                          ),
+                          Text(
+                            comments[index].comment!,
+                          ),
+                          Row(
+                            children: [
+                              Icon(
+                                Icons.reply,
+                                color: btnGradRight,
+                              ),
+                              Text(
+                                'Reply',
+                                style: TextStyle(color: btnGradLeft),
+                              )
+                            ],
                           ),
                         ],
                       );

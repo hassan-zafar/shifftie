@@ -6,6 +6,8 @@ import 'package:shifftie/Components/titleRow.dart';
 import 'package:shifftie/Locale/locale.dart';
 import 'package:shifftie/Shifts/donations_sheet.dart';
 import 'package:shifftie/Theme/colors.dart';
+import 'package:shifftie/utilities/curstom_unicorn_button.dart';
+import 'package:shifftie/utilities/utilities.dart';
 
 class ShiftDetailsPage extends StatefulWidget {
   const ShiftDetailsPage({Key? key}) : super(key: key);
@@ -146,8 +148,18 @@ class _ShiftDetailsPageState extends State<ShiftDetailsPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  CustomTextButtonIntr(
-                      onTap: () {}, isGradient: true, text: 'View Shift'),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: MyOutlinedButton(
+                      onPressed: () {},
+                      gradient:
+                          LinearGradient(colors: [btnGradLeft, btnGradRight]),
+                      child: Text(
+                        'View Shift',
+                        style: TextStyle(color: btnGradLeft, fontSize: 20),
+                      ),
+                    ),
+                  ),
                   CustomTextButtonIntr(
                       onTap: () {
                         donationSheet(context);

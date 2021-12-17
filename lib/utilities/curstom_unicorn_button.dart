@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:shifftie/Theme/colors.dart';
+import 'package:shifftie/utilities/utilities.dart';
 
 class UnicornOutlineButton extends StatelessWidget {
   final _GradientPainter _painter;
@@ -75,5 +77,44 @@ class _GradientPainter extends CustomPainter {
   bool shouldRepaint(covariant CustomPainter oldDelegate) {
     // TODO: implement shouldRepaint
     throw UnimplementedError();
+  }
+}
+
+class MyOutlinedButton extends StatelessWidget {
+  final VoidCallback onPressed;
+  final Widget child;
+  final ButtonStyle? style;
+  final Gradient? gradient;
+  final double thickness;
+
+  const MyOutlinedButton({
+    Key? key,
+    required this.onPressed,
+    required this.child,
+    this.style,
+    this.gradient,
+    this.thickness = 2,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return DecoratedBox(
+      decoration: BoxDecoration(
+          gradient: gradient,
+          borderRadius: BorderRadius.circular(Utilities.borderRadius)),
+      child: Container(
+        height: 68,
+        width: 158,
+        decoration: BoxDecoration(
+            color: mainColor,
+            borderRadius: BorderRadius.circular(Utilities.borderRadius)),
+        margin: EdgeInsets.all(thickness),
+        child: OutlinedButton(
+          onPressed: onPressed,
+          style: style,
+          child: child,
+        ),
+      ),
+    );
   }
 }

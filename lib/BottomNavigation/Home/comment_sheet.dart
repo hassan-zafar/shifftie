@@ -9,8 +9,9 @@ class Comment {
   final String? name;
   final String? comment;
   final String? time;
+  final String? commentLikes;
 
-  Comment({this.image, this.name, this.comment, this.time});
+  Comment({this.image, this.name, this.commentLikes, this.comment, this.time});
 }
 
 void commentSheet(BuildContext context) async {
@@ -20,29 +21,34 @@ void commentSheet(BuildContext context) async {
     Comment(
       image: 'assets/user/user1.png',
       name: 'Emili Williamson',
+      commentLikes: '1.2k',
       comment: locale.comment1,
       time: ' 5' + locale.minAgo!,
     ),
     Comment(
       image: 'assets/user/user2.png',
       name: 'Yella Jackson',
+      commentLikes: '1.1k',
       comment: locale.comment2,
       time: ' 15' + locale.minAgo!,
     ),
     Comment(
       image: 'assets/user/user3.png',
       name: 'Lisa devil',
+      commentLikes: '23',
       comment: locale.comment3,
       time: ' 1' + locale.dayAgo!,
     ),
     Comment(
       image: 'assets/user/user4.png',
       name: 'Emila Wattson',
+      commentLikes: '34',
       comment: locale.comment4,
       time: ' 2' + locale.dayAgo!,
     ),
     Comment(
       image: 'assets/user/user1.png',
+      commentLikes: '45',
       name: 'Emili Williamson',
       comment: locale.comment1,
       time: ' 5' + locale.minAgo!,
@@ -50,6 +56,7 @@ void commentSheet(BuildContext context) async {
     Comment(
       image: 'assets/user/user2.png',
       name: 'Yella Jackson',
+      commentLikes: '2.4k',
       comment: locale.comment2,
       time: ' 15' + locale.minAgo!,
     ),
@@ -57,14 +64,15 @@ void commentSheet(BuildContext context) async {
       image: 'assets/user/user3.png',
       name: 'Lisa devil',
       comment: locale.comment3,
+      commentLikes: '2.3k',
       time: ' 1' + locale.dayAgo!,
     ),
     Comment(
-      image: 'assets/user/user4.png',
-      name: 'Emila Wattson',
-      comment: locale.comment4,
-      time: ' 2' + locale.dayAgo!,
-    ),
+        image: 'assets/user/user4.png',
+        name: 'Emila Wattson',
+        comment: locale.comment4,
+        time: ' 2' + locale.dayAgo!,
+        commentLikes: '12'),
   ];
 
   await showModalBottomSheet(
@@ -130,7 +138,8 @@ void commentSheet(BuildContext context) async {
                                       ]),
                                     ),
                                     trailing: ImageIcon(
-                                      const AssetImage('assets/icons/ic_like.png'),
+                                      const AssetImage(
+                                          'assets/icons/ic_like.png'),
                                       color: disabledTextColor,
                                     ),
                                   ),

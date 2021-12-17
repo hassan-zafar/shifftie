@@ -4,6 +4,9 @@ import 'package:flutter_svg/svg.dart';
 import 'package:shifftie/Auth/Login/UI/login_page.dart';
 import 'package:shifftie/Auth/Registration/UI/register_page.dart';
 import 'package:shifftie/Components/custom_text_button.dart';
+import 'package:shifftie/Theme/colors.dart';
+import 'package:shifftie/utilities/curstom_unicorn_button.dart';
+import 'package:shifftie/utilities/utilities.dart';
 
 class WelcomescreenWidget extends StatelessWidget {
   const WelcomescreenWidget({Key? key}) : super(key: key);
@@ -187,14 +190,14 @@ class WelcomescreenWidget extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: CustomTextButton(
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const RegisterPage(),
-                  ));
-                },
-                text: 'Sign Up',
-                isGradient: true),
+            child: MyOutlinedButton(
+              onPressed: () {},
+              gradient: LinearGradient(colors: [btnGradLeft, btnGradRight]),
+              child: Text(
+                'Sign Up',
+                style: TextStyle(color: btnGradLeft, fontSize: 20),
+              ),
+            ),
           )
         ],
       ),

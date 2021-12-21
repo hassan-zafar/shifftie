@@ -205,8 +205,11 @@ class WelcomescreenWidget extends StatelessWidget {
             child: MyOutlinedButton(
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const HomeNewUserFollowPage(),
+                  builder: (context) => RegisterPage(),
                 ));
+                // Navigator.of(context).push(MaterialPageRoute(
+                //   builder: (context) => const HomeNewUserFollowPage(),
+                // ));
               },
               gradient: LinearGradient(colors: [btnGradLeft, btnGradRight]),
               child: Text(

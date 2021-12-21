@@ -1,3 +1,3 @@
-import 'package:shifftie/DatabaseMethods/users.dart';
+import 'package:shifftie/Models/users.dart';
 
 AppUserModel? currentUser;

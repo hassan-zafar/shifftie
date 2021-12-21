@@ -5,7 +5,7 @@ import 'package:shifftie/Constants/collections.dart';
 import 'package:shifftie/Constants/constants.dart';
 import 'package:shifftie/DatabaseMethods/local_database.dart';
 import 'package:shifftie/DatabaseMethods/user_api.dart';
-import 'package:shifftie/DatabaseMethods/users.dart';
+import 'package:shifftie/Models/users.dart';
 import 'package:shifftie/utilities/custom_toast.dart';
 
 class AuthMethod {

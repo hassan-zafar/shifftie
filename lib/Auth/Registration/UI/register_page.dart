@@ -7,7 +7,7 @@ import 'package:shifftie/Components/custom_text_button.dart';
 import 'package:shifftie/Components/entry_field.dart';
 import 'package:shifftie/DatabaseMethods/auth_methods.dart';
 import 'package:shifftie/DatabaseMethods/user_api.dart';
-import 'package:shifftie/DatabaseMethods/users.dart';
+import 'package:shifftie/Models/users.dart';
 import 'package:shifftie/Theme/colors.dart';
 import 'package:shifftie/utilities/custom_toast.dart';
 import 'package:shifftie/utilities/show_loading.dart';
@@ -92,80 +92,83 @@ class _RegisterPageState extends State<RegisterPage> {
 
       //this column contains 3 textFields and a bottom bar
       body: SingleChildScrollView(
-        child: Column(
-          // mainAxisAlignment: MainAxisAlignment.end,
-          // crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Text(
-              "Shift Your Friend's Stories",
-              // textAlign: TextAlign.center,
-              style: Theme.of(context)
-                  .textTheme
-                  .headline5!
-                  .copyWith(color: lightTextColor),
-            ),
-            Text(
-              'asd',
-              // textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.subtitle1,
-            ),
-            //name textField
+        child: Form(
+          key: _key,
+          child: Column(
+            // mainAxisAlignment: MainAxisAlignment.end,
+            // crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              Text(
+                "Shift Your Friend's Stories",
+                // textAlign: TextAlign.center,
+                style: Theme.of(context)
+                    .textTheme
+                    .headline5!
+                    .copyWith(color: lightTextColor),
+              ),
+              Text(
+                'asd',
+                // textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.subtitle1,
+              ),
+              //name textField
 
-            EntryField(
-              controller: _email,
-              textCapitalization: TextCapitalization.words,
-              label: 'Email@yourmail.com',
-              keyboardType: TextInputType.emailAddress,
-            ),
-            //email textField
-            EntryField(
-              controller: _password,
-              textCapitalization: TextCapitalization.none,
-              label: 'Password',
-            ),
+              EntryField(
+                controller: _email,
+                textCapitalization: TextCapitalization.words,
+                label: 'Email@yourmail.com',
+                keyboardType: TextInputType.emailAddress,
+              ),
+              //email textField
+              EntryField(
+                controller: _password,
+                textCapitalization: TextCapitalization.none,
+                label: 'Password',
+              ),
 
-            //phone textField
-            EntryField(
-              controller: _confirmPassword,
-              textCapitalization: TextCapitalization.none,
-              label: 'Re-type Your Password',
-            ),
+              //phone textField
+              EntryField(
+                controller: _confirmPassword,
+                textCapitalization: TextCapitalization.none,
+                label: 'Re-type Your Password',
+              ),
 
-            //continue button
-            CustomTextButton(
-                text: 'Start Your Account',
-                isGradient: true,
-                onTap: () => _submitForm()),
-            const Text(
-              'Or',
-              textAlign: TextAlign.center,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                CustomTextButtonIntr(
-                    width: 140,
-                    text: 'Facebook',
-                    isGradient: false,
-                    color: const Color(0xff1E81C9),
-                    onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const PronounPage(),
-                      ));
-                    }),
-                CustomTextButtonIntr(
-                    text: 'Google',
-                    width: 140,
-                    color: Colors.green,
-                    isGradient: false,
-                    onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const PronounPage(),
-                      ));
-                    }),
-              ],
-            )
-          ],
+              //continue button
+              CustomTextButton(
+                  text: 'Start Your Account',
+                  isGradient: true,
+                  onTap: () => _submitForm()),
+              const Text(
+                'Or',
+                textAlign: TextAlign.center,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  CustomTextButtonIntr(
+                      width: 140,
+                      text: 'Facebook',
+                      isGradient: false,
+                      color: const Color(0xff1E81C9),
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const PronounPage(),
+                        ));
+                      }),
+                  CustomTextButtonIntr(
+                      text: 'Google',
+                      width: 140,
+                      color: Colors.green,
+                      isGradient: false,
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const PronounPage(),
+                        ));
+                      }),
+                ],
+              )
+            ],
+          ),
         ),
       ),
       // FadedSlideAnimation(

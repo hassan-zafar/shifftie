@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "592392836457",
+    "project_id": "shifttie-9adf0",
+    "storage_bucket": "shifttie-9adf0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:592392836457:android:56cce615ce1bf76ceed9f8",
+        "android_client_info": {
+          "package_name": "com.hassan.shifftie"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "592392836457-21rekf1j98hoef5kac42nah4f406g0ar.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hassan.shifftie",
+            "certificate_hash": "387accc7b18bc054a3d2c235d89180c8014d7a46"
+          }
+        },
+        {
+          "client_id": "592392836457-41q0b9p25qm60qkjjgmsb319ddkudp1k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASCasUOBn6cetNXZxC3tvrSMahcns1QNY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "592392836457-41q0b9p25qm60qkjjgmsb319ddkudp1k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

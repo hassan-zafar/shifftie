@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:shifftie/DatabaseMethods/users.dart';
+import 'package:shifftie/Models/users.dart';
 import 'package:shifftie/utilities/custom_toast.dart';
 
 

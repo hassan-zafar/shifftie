@@ -12,7 +12,7 @@ import 'package:shifftie/BottomNavigation/MyProfile/help_page.dart';
 import 'package:shifftie/BottomNavigation/AddVideo/post_info.dart';
 import 'package:shifftie/BottomNavigation/Explore/search_users.dart';
 import 'package:shifftie/BottomNavigation/MyProfile/tnc.dart';
-import 'package:shifftie/Chat/chat_page.dart';
+import 'package:shifftie/Screens/Chat/chat_page.dart';
 import 'package:shifftie/Screens/user_profile.dart';
 
 class PageRoutes {

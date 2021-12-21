@@ -37,7 +37,7 @@ class LoginNavigator extends StatelessWidget {
               builder = (BuildContext _) => const LoginPage();
               break;
             case LoginRoutes.registration:
-              builder = (BuildContext _) => const RegisterPage();
+              builder = (BuildContext _) =>  RegisterPage();
               break;
             case LoginRoutes.verification:
               builder = (BuildContext _) => VerificationPage(

@@ -1,4 +1,4 @@
-package com.example.shifftie
+package com.hassan.shifftie
 
 import io.flutter.embedding.android.FlutterActivity
 

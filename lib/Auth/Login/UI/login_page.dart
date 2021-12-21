@@ -1,11 +1,15 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shifftie/Auth/Registration/UI/register_page.dart';
 import 'package:shifftie/Auth/interests_page.dart';
 import 'package:shifftie/Components/custom_text_button.dart';
 import 'package:shifftie/Components/entry_field.dart';
+import 'package:shifftie/DatabaseMethods/auth_methods.dart';
 import 'package:shifftie/Routes/routes.dart';
 import 'package:shifftie/Theme/colors.dart';
+import 'package:shifftie/utilities/custom_toast.dart';
 import 'package:shifftie/utilities/show_loading.dart';
+
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
 
@@ -31,11 +35,12 @@ class _LoginBodyState extends State<LoginBody> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-          body: Form(key: _key,
-            child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
+          body: Form(
+        key: _key,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
             const SizedBox(
               height: 40,
             ),
@@ -46,13 +51,13 @@ class _LoginBodyState extends State<LoginBody> {
                   .headline4!
                   .copyWith(color: secondaryColor, fontWeight: FontWeight.bold),
             ),
-             EntryField(
-              label: "Email@youremail.com",                  controller: _password,
-
+            EntryField(
+              label: "Email@youremail.com",
+              controller: _password,
             ),
-             EntryField(
-              label: "Password",                  controller: _email,
-
+            EntryField(
+              label: "Password",
+              controller: _email,
             ),
             // CustomTextFormField(
             //     title: 'Enter', controller: TextEditingController()),
@@ -90,26 +95,22 @@ class _LoginBodyState extends State<LoginBody> {
             ),
 
             CustomTextButton(
-              onTap: () {
-                      if (_key.currentState!.validate()) {
-                        showLoadingDislog(context);
-                        final User? _user =
-                            await AuthMethod().loginWithEmailAndPassword(
-                          _email.text.trim(),
-                          _password.text.trim(),
-                        );
-                        if (_user != null) {
-                          Navigator.of(context).pushNamedAndRemoveUntil(
-                            MainScreens.routeName,
-                            (Route<dynamic> route) => false,
-                          );
-                        } else {
-                          Navigator.of(context).pop();
-                          CustomToast.errorToast(
-                              message: 'email OR password in incorrect');
-                        }
-                      }
-                  Navigator.pushNamed(context, PageRoutes.bottomNavigation),;
+              onTap: () async {
+                if (_key.currentState!.validate()) {
+                  showLoadingDislog(context);
+                  final User? _user =
+                      await AuthMethod().loginWithEmailAndPassword(
+                    _email.text.trim(),
+                    _password.text.trim(),
+                  );
+                  if (_user != null) {
+                    Navigator.pushNamed(context, PageRoutes.bottomNavigation);
+                  } else {
+                    Navigator.of(context).pop();
+                    CustomToast.errorToast(
+                        message: 'email OR password in incorrect');
+                  }
+                }
               },
               text: 'Login',
               isGradient: true,
@@ -188,9 +189,9 @@ class _LoginBodyState extends State<LoginBody> {
                 ),
               ),
             ),
-        ],
-      ),
-          )),
+          ],
+        ),
+      )),
     );
   }
 }

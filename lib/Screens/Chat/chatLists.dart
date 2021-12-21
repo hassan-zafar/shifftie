@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:shifftie/Constants/collections.dart';
+import 'package:shifftie/Screens/Chat/commentsNChat.dart';
 
 
 class ChatLists extends StatefulWidget {
@@ -16,7 +17,7 @@ class _ChatListsState extends State<ChatLists> {
         centerTitle: true,
         elevation: 0,
         // backgroundColor: Colors.transparent,
-        title: Text("All Chats"),
+        title: const Text("All Chats"),
       ),
       body: StreamBuilder<QuerySnapshot>(
           stream:
@@ -34,7 +35,7 @@ class _ChatListsState extends State<ChatLists> {
               print(chatHeads);
             });
             if (snapshots.data == null || chatHeads.isEmpty) {
-              return Center(
+              return const Center(
                 child: Text(
                   "No Active Chat Heads!!",
                   style:
@@ -44,7 +45,7 @@ class _ChatListsState extends State<ChatLists> {
             }
 
             return ListView.builder(
-              physics: BouncingScrollPhysics(),
+              physics: const BouncingScrollPhysics(),
               shrinkWrap: true,
               itemCount: chatHeads.length,
               itemBuilder: (context, index) {

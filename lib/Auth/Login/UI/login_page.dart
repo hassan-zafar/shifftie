@@ -6,7 +6,6 @@ import 'package:shifftie/Components/entry_field.dart';
 import 'package:shifftie/Routes/routes.dart';
 import 'package:shifftie/Theme/colors.dart';
 import 'package:shifftie/utilities/show_loading.dart';
-
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
 
@@ -47,11 +46,11 @@ class _LoginBodyState extends State<LoginBody> {
                   .headline4!
                   .copyWith(color: secondaryColor, fontWeight: FontWeight.bold),
             ),
-            const EntryField(
+             EntryField(
               label: "Email@youremail.com",                  controller: _password,
 
             ),
-            const EntryField(
+             EntryField(
               label: "Password",                  controller: _email,
 
             ),

@@ -43,6 +43,13 @@ dependencies:
   flutter_svg :
   cached_network_image:
   flutter_staggered_grid_view:
+  #firebase
+  firebase_auth: ^3.1.0
+  cloud_firestore: ^2.5.1
+  firebase_core: ^1.6.0
+  firebase_storage: ^10.0.3
+  firebase_messaging:
+
     # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
 

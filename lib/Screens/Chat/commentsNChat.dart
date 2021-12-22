@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:shifftie/Constants/collections.dart';
 import 'package:shifftie/Constants/constants.dart';
 import 'package:shifftie/Models/users.dart';
+import 'package:shifftie/utilities/custom_toast.dart';
 // import 'package:timeago/timeago.dart' as timeago;
 import 'package:uuid/uuid.dart';
-
 
 class CommentsNChat extends StatefulWidget {
   // final String? postId;
@@ -107,7 +107,7 @@ class CommentsNChatState extends State<CommentsNChat> {
   }
 
   addChatMessage() {
-    String commentId = Uuid().v1();
+    String commentId = const Uuid().v1();
     if (_commentNMessagesController.text.trim().length > 1) {
       chatRoomRef
           .doc(currentUser!.isAdmin != null && currentUser!.isAdmin == true
@@ -157,7 +157,8 @@ class CommentsNChatState extends State<CommentsNChat> {
       // }
 
     } else {
-      BotToast.showText(text: "Message field shouldn't be left Empty");
+      CustomToast.successToast(
+          message: "Message field shouldn't be left Empty");
     }
     _commentNMessagesController.clear();
   }

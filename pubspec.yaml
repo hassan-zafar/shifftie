@@ -55,7 +55,8 @@ dependencies:
   google_sign_in: ^5.0.7
   gms_check: ^1.0.0
   notification_permissions:
-
+  flutter_facebook_auth:
+  
   get_storage:
   flutter_local_notifications:
   fluttertoast:

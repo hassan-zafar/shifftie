@@ -58,7 +58,7 @@ class LocalDB {
   // Getters
   //
   bool? getIsAdmin() => getStorageProference.read(_isAdmin);
-  String getUserData() => getStorageProference.read(_userModelString) ?? '';
+  String getUserData(userModelString) => getStorageProference.read(_userModelString) ?? '';
   String getBranches() => getStorageProference.read(_branches) ?? "";
   String getClasses() => getStorageProference.read(_classes) ?? "";
 

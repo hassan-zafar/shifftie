@@ -55,7 +55,7 @@ class FirebaseNotificationService extends NotificationService {
       (RemoteMessage message) {
         final notification = message.notification;
         final android = message.notification?.android;
-        if (notification != null && android != null && isAndroid) {
+        if (notification != null && android != null ) {
           flutterLocalNotificationsPlugin.show(
             notification.hashCode,
             notification.title,

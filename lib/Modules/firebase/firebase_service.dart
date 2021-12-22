@@ -235,22 +235,19 @@ class FirebaseServices extends BaseFirebaseServices {
     return await messaging!.getToken();
   }
 
-  @override
-  void initDynamicLinkService(context) {
-    DynamicLinkService.initDynamicLinks(context);
-  }
+
 
   @override
   Future<FirebaseRemoteConfig?> loadRemoteConfig({onUpdate}) async {
     return FirebaseRemoteServices.loadRemoteConfig();
   }
 
-  @override
-  void shareDynamicLinkProduct({context, itemUrl}) {
-    DynamicLinkService().shareProductLink(
-      productUrl: itemUrl,
-    );
-  }
+  // @override
+  // void shareDynamicLinkProduct({context, itemUrl}) {
+  //   DynamicLinkService().shareProductLink(
+  //     productUrl: itemUrl,
+  //   );
+  // }
 
   @override
   void signOut() async {

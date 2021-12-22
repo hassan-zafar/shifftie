@@ -11,6 +11,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:multi_image_picker2/multi_image_picker2.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
+import 'package:shifftie/Components/Tools/skeleton.dart';
+import 'package:shifftie/Theme/colors.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 
@@ -39,40 +41,38 @@ class ImageTools {
   }
 
   static String? formatImage(String? url, [kSize? size = kSize.medium]) {
-    if (serverConfig['type'] == 'presta') {
-      return prestashopImage(url!, size);
-    }
 
-    if (Config().isCacheImage ?? kAdvanceConfig['kIsResizeImage'] ?? false) {
-      var pathWithoutExt = p.withoutExtension(url!);
-      var ext = p.extension(url);
-      String? imageURL = url;
 
-      if (ext == '.jpeg') {
-        imageURL = url;
-      } else {
-        switch (size) {
-          case kSize.large:
-            imageURL = '$pathWithoutExt-large$ext';
-            break;
-          case kSize.small:
-            imageURL = '$pathWithoutExt-small$ext';
-            break;
-          default: // kSize.medium:e
-            imageURL = '$pathWithoutExt-medium$ext';
-            break;
-        }
-      }
+    // if (Config().isCacheImage ?? kAdvanceConfig['kIsResizeImage'] ?? false) {
+    //   var pathWithoutExt = p.withoutExtension(url!);
+    //   var ext = p.extension(url);
+    //   String? imageURL = url;
 
-      // printLog('[🏞Image Caching] $imageURL');
-      return imageURL;
-    } else {
+    //   if (ext == '.jpeg') {
+    //     imageURL = url;
+    //   } else {
+    //     switch (size) {
+    //       case kSize.large:
+    //         imageURL = '$pathWithoutExt-large$ext';
+    //         break;
+    //       case kSize.small:
+    //         imageURL = '$pathWithoutExt-small$ext';
+    //         break;
+    //       default: // kSize.medium:e
+    //         imageURL = '$pathWithoutExt-medium$ext';
+    //         break;
+    //     }
+    //   }
+
+    //   return imageURL;
+    // } 
+    // else {
       return url;
-    }
+    // }
   }
 
   static NetworkImage networkImage(String? url, [kSize size = kSize.medium]) {
-    return NetworkImage(formatImage(url, size) ?? kDefaultImage);
+    return NetworkImage(formatImage(url, size)! );
   }
 
   /// Smart image function to load image cache and check empty URL to return empty box
@@ -94,7 +94,7 @@ class ImageTools {
     if (height == null && width == null) {
       width = 200;
     }
-    var ratioImage = kAdvanceConfig['RatioProductImage'] ?? 1.2;
+    var ratioImage = 1.2;
 
     if (url?.isEmpty ?? true) {
       return FutureBuilder<bool>(
@@ -155,27 +155,6 @@ class ImageTools {
       );
     }
 
-    if (kIsWeb) {
-      /// temporary fix on CavansKit https://github.com/flutter/flutter/issues/49725
-      var imageURL = isResize ? formatImage(url, size) : url;
-
-      var imageProxy = '$kImageProxy${width}x,q50/';
-      if (kImageProxy.isEmpty) {
-        /// this image proxy is use for demo purpose, please make your own one
-        imageProxy = 'https://cors.mstore.io/';
-      }
-
-      return ConstrainedBox(
-        constraints: BoxConstraints(maxHeight: width! * ratioImage),
-        child: FadeInImage.memoryNetwork(
-          image: '$imageProxy$imageURL',
-          fit: fit,
-          width: width,
-          height: height,
-          placeholder: kTransparentImage,
-        ),
-      );
-    }
 
     final image = ExtendedImage.network(
       isResize ? formatImage(url, size)! : url!,
@@ -217,7 +196,7 @@ class ImageTools {
             widget = Container(
               width: width,
               height: height ?? width! * ratioImage,
-              color: const Color(kEmptyColor),
+              color:  lightTextColor,
             );
             break;
         }

@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:quiver/strings.dart';
 import 'package:shifftie/Components/firestore_animated_list.dart';
+import 'package:shifftie/Components/image_tools.dart';
 import '../firebase_service.dart';
 
 class MessagesStream extends StatefulWidget {

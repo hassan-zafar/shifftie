@@ -172,7 +172,7 @@ class FirebaseAnimatedListState extends State<FirestoreAnimatedList> {
   }
 
   void _onError(dynamic error, StackTrace trace) {
-    printLog('$error\n$trace');
+    print('$error\n$trace');
   }
 
   @override

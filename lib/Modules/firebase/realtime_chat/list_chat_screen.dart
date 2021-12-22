@@ -5,8 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
-import '../../../generated/l10n.dart';
-import '../../../models/user_model.dart';
+
 import '../../../screens/base_screen.dart';
 import '../firebase_service.dart';
 import 'chat_screen.dart';

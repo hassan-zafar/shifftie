@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:shifftie/Constants/collections.dart';
-import 'package:shifftie/Screens/Chat/commentsNChat.dart';
+import 'package:shifftie/Screens/Chat/comments_N_Chat.dart';
 import 'package:shifftie/utilities/show_loading.dart';
 
 
@@ -62,8 +62,7 @@ class _ChatListsState extends State<ChatLists> {
                                       .androidNotificationToken,
                                   heroMsg: chatHeads[index].comment,
                                 ))),
-                    child: GlassContainer(
-                      opacity: 0.5,
+                    child: Container(
                       child: ListTile(
                         title: Text(chatHeads[index].userName!),
                         subtitle: Text(

@@ -1,4 +1,3 @@
-import 'package:inspireui/utils/logs.dart';
 
 import 'firebase_remote_config.dart';
 import 'firebase_service.dart';
@@ -12,7 +11,7 @@ class FirebaseRemoteServices {
       await _remoteConfig.activate();
       return _remoteConfig;
     } catch (e) {
-      printLog('Unable to fetch remote config. Default value will be used. $e');
+      print('Unable to fetch remote config. Default value will be used. $e');
     }
     return null;
   }

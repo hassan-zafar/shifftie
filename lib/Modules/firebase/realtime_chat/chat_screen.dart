@@ -5,6 +5,8 @@ import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shifftie/Models/users.dart';
+import 'package:shifftie/Screens/base_screen.dart';
+import 'package:shifftie/Theme/colors.dart';
 import 'package:uuid/uuid.dart';
 
 // import '../../../common/constants.dart';
@@ -98,7 +100,7 @@ class _ChatScreenState extends BaseScreen<ChatScreen> {
           .doc(widget.senderUser!.email)
           .set({'chatWith': widget.receiverEmail}, SetOptions(merge: true));
     } catch (e) {
-      printLog(e.toString());
+      print(e.toString());
     }
   }
 
@@ -170,10 +172,10 @@ class _ChatScreenState extends BaseScreen<ChatScreen> {
           // Map user = snapshot.data()!;
           // if (user['chatWith'] != widget.senderUser!.email) {
           if (widget.receiverEmail != widget.senderUser!.email) {
-            Services().api.pushNotification(widget.senderUser!.cookie,
-                receiverEmail: widget.receiverEmail,
-                senderName: widget.senderUser!.email,
-                message: message)!;
+            // Services().api.pushNotification(widget.senderUser!.cookie,
+            //     receiverEmail: widget.receiverEmail,
+            //     senderName: widget.senderUser!.email,
+            //     message: message)!;
           }
         }
       }).catchError((e) {});
@@ -239,9 +241,9 @@ class _ChatScreenState extends BaseScreen<ChatScreen> {
                 userEmail: widget.receiverEmail,
               ),
               Container(
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   border: Border(
-                    top: BorderSide(color: kTeal400, width: 2.0),
+                    top: BorderSide(color: darkColor, width: 2.0),
                   ),
                 ),
                 child: Row(
@@ -257,10 +259,10 @@ class _ChatScreenState extends BaseScreen<ChatScreen> {
                         onEditingComplete: () {
                           updateTyping(false);
                         },
-                        decoration: InputDecoration(
-                          contentPadding: const EdgeInsets.symmetric(
+                        decoration: const InputDecoration(
+                          contentPadding: EdgeInsets.symmetric(
                               vertical: 10.0, horizontal: 20.0),
-                          hintText: S.of(context).typeYourMessage,
+                          hintText: 'Type Your Message',
                           border: InputBorder.none,
                         ),
                       ),
@@ -274,9 +276,9 @@ class _ChatScreenState extends BaseScreen<ChatScreen> {
                         messagesText = '';
                       },
                       child: Text(
-                        S.of(context).send,
-                        style: const TextStyle(
-                          color: kTeal400,
+                        'Send',
+                        style: TextStyle(
+                          color: darkColor,
                           fontWeight: FontWeight.bold,
                           fontSize: 18.0,
                         ),

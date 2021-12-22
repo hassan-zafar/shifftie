@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:shifftie/Constants/collections.dart';
 import 'package:shifftie/Constants/constants.dart';
 import 'package:shifftie/Models/users.dart';
+import 'package:shifftie/Services/notificationHandler.dart';
 import 'package:shifftie/utilities/custom_toast.dart';
+import 'package:shifftie/utilities/show_loading.dart';
 // import 'package:timeago/timeago.dart' as timeago;
 import 'package:uuid/uuid.dart';
 
@@ -91,7 +93,7 @@ class CommentsNChatState extends State<CommentsNChat> {
               .snapshots(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
-          return LoadingIndicator();
+          return const LoadingIndicator();
         }
 
         List<CommentsNMessages> chatMessages = [];
@@ -165,46 +167,43 @@ class CommentsNChatState extends State<CommentsNChat> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: backgroundColorBoxDecoration(),
-      child: Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          elevation: 0,
-          backgroundColor: Colors.transparent,
-          title: Text(
-            currentUser!.isAdmin! ? "Manage Queries" : "Contact Admin",
-            style: TextStyle(color: Colors.black),
-          ),
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        title: Text(
+          currentUser!.isAdmin! ? "Manage Queries" : "Contact Admin",
+          style: const TextStyle(color: Colors.black),
         ),
-        body: Padding(
-          padding: const EdgeInsets.only(bottom: 20.0),
-          child: Column(
-            children: <Widget>[
-              Expanded(
-                child: buildChat(),
-              ),
-              Divider(),
-              ListTile(
-                title: TextFormField(
-                  controller: _commentNMessagesController,
-                  decoration: InputDecoration(
-                    hintText: "Write a message...",
-                  ),
-                ),
-                trailing: IconButton(
-                  onPressed: addChatMessage,
-                  icon: Icon(
-                    Icons.send,
-                    size: 40.0,
-                  ),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.only(bottom: 20.0),
+        child: Column(
+          children: <Widget>[
+            Expanded(
+              child: buildChat(),
+            ),
+            const Divider(),
+            ListTile(
+              title: TextFormField(
+                controller: _commentNMessagesController,
+                decoration: const InputDecoration(
+                  hintText: "Write a message...",
                 ),
               ),
-              // SizedBox(
-              //   height: 50,
-              // ),
-            ],
-          ),
+              trailing: IconButton(
+                onPressed: addChatMessage,
+                icon: Icon(
+                  Icons.send,
+                  size: 40.0,
+                ),
+              ),
+            ),
+            // SizedBox(
+            //   height: 50,
+            // ),
+          ],
         ),
       ),
     );

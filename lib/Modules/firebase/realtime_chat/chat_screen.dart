@@ -4,13 +4,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:shifftie/Models/users.dart';
 import 'package:uuid/uuid.dart';
 
-import '../../../common/constants.dart';
-import '../../../generated/l10n.dart';
-import '../../../models/index.dart' show User;
-import '../../../screens/base_screen.dart';
-import '../../../services/index.dart';
+// import '../../../common/constants.dart';
+// import '../../../generated/l10n.dart';
+// import '../../../models/index.dart' show User;
+// import '../../../screens/base_screen.dart';
+// import '../../../services/index.dart';
 import '../firebase_service.dart';
 import 'chat_typing.dart';
 import 'messages.dart';
@@ -18,7 +19,7 @@ import 'messages.dart';
 firebase_auth.User? loggedInUser;
 
 class ChatScreen extends StatefulWidget {
-  final User? senderUser;
+  final AppUserModel? senderUser;
   final String? receiverEmail;
   final String? receiverName;
 

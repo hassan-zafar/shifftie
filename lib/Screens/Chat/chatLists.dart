@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:shifftie/Constants/collections.dart';
 import 'package:shifftie/Screens/Chat/commentsNChat.dart';
+import 'package:shifftie/utilities/show_loading.dart';
 
 
 class ChatLists extends StatefulWidget {
@@ -24,7 +25,7 @@ class _ChatListsState extends State<ChatLists> {
               chatListRef.orderBy("timestamp", descending: true).snapshots(),
           builder: (context, snapshots) {
             if (!snapshots.hasData) {
-              return LoadingIndicator();
+              return const LoadingIndicator();
             }
             List<CommentsNMessages> chatHeads = [];
             print(snapshots.data!.docs.length);

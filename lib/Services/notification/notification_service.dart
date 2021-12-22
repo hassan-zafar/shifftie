@@ -1,4 +1,5 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:notification_permissions/notification_permissions.dart';
 
 
 abstract class NotificationService {
@@ -46,9 +47,7 @@ abstract class NotificationService {
   });
 
   Future<bool> requestPermission() async {
-    if (kIsWeb) {
-      return false;
-    }
+ 
     final status = await NotificationPermissions.requestNotificationPermissions(
       iosSettings: const NotificationSettingsIos(
         sound: true,

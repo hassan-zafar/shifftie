@@ -7,6 +7,8 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:gms_check/gms_check.dart';
+import 'package:shifftie/Constants/collections.dart';
+import 'package:shifftie/Constants/constants.dart';
 import '../../services/base_firebase_services.dart';
 import 'dynamic_link_service.dart';
 import 'firebase_analytics_service.dart';
@@ -151,9 +153,9 @@ class FirebaseServices extends BaseFirebaseServices {
     );
     if (GmsCheck().isGmsAvailable) {
       try {
-        await Services()
-            .api
-            .updateUserInfo({'deviceToken': token}, user!.cookie);
+        await userRef.doc(currentUser!.id).update(
+          {'deviceToken': token},
+        );
       } catch (e) {
         print(e);
       }
@@ -224,7 +226,7 @@ class FirebaseServices extends BaseFirebaseServices {
     try {
       return FirebaseServices().auth?.currentUser;
     } catch (e) {
-      printLog('[Tabbar] getCurrentUser error ${e.toString()}');
+      print('[Tabbar] getCurrentUser error ${e.toString()}');
     }
   }
 

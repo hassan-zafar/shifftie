@@ -1,6 +1,6 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:notification_permissions/notification_permissions.dart';
-
+import 'package:shifftie/Models/notification_item.dart';
 
 abstract class NotificationService {
   bool _isInitialized = false;
@@ -47,7 +47,6 @@ abstract class NotificationService {
   });
 
   Future<bool> requestPermission() async {
- 
     final status = await NotificationPermissions.requestNotificationPermissions(
       iosSettings: const NotificationSettingsIos(
         sound: true,
@@ -63,7 +62,7 @@ abstract class NotificationService {
   }
 
   Future<bool> isGranted() async {
-    if (kIsWeb) return false;
+    // if (kIsWeb) return false;
     final status =
         await NotificationPermissions.getNotificationPermissionStatus();
     if (status == PermissionStatus.granted) {
@@ -81,7 +80,7 @@ abstract class NotificationService {
 }
 
 mixin NotificationDelegate {
-  void onMessage(FStoreNotificationItem notification);
+  void onMessage(NotificationItem notification);
 
-  void onMessageOpenedApp(FStoreNotificationItem notification);
+  void onMessageOpenedApp(NotificationItem notification);
 }

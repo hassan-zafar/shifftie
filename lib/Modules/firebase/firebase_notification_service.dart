@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:shifftie/Models/notification_item.dart';
+import 'package:shifftie/Services/notification/notification_service.dart';
 
 
 
@@ -29,7 +31,7 @@ class FirebaseNotificationService extends NotificationService {
     delegate = notificationDelegate;
     final startTime = DateTime.now();
     await _instance.getToken().then((token) async {
-      printLog('[FirebaseCloudMessaging] init FCM token $token', startTime);
+      print('[FirebaseCloudMessaging] init FCM token $token /n $startTime');
     });
 
     await _instance.setForegroundNotificationPresentationOptions(
@@ -40,7 +42,7 @@ class FirebaseNotificationService extends NotificationService {
 
     final initMessage = await _instance.getInitialMessage();
     if (initMessage != null) {
-      delegate.onMessageOpenedApp(FStoreNotificationItem(
+      delegate.onMessageOpenedApp(NotificationItem(
         id: initMessage.messageId ?? '',
         title: initMessage.notification?.title ?? '',
         body: initMessage.notification?.body ?? '',
@@ -72,7 +74,7 @@ class FirebaseNotificationService extends NotificationService {
           );
         }
 
-        delegate.onMessage(FStoreNotificationItem(
+        delegate.onMessage(NotificationItem(
           id: message.messageId ?? '',
           title: message.notification?.title ?? '',
           body: message.notification?.body ?? '',
@@ -84,7 +86,7 @@ class FirebaseNotificationService extends NotificationService {
 
     FirebaseMessaging.onMessageOpenedApp.listen((message) {
       // printLog('Notification OpenedApp triggered');
-      delegate.onMessageOpenedApp(FStoreNotificationItem(
+      delegate.onMessageOpenedApp(NotificationItem(
         id: message.messageId ?? '',
         title: message.notification?.title ?? '',
         body: message.notification?.body ?? '',

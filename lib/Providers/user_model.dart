@@ -3,6 +3,7 @@ import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:localstorage/localstorage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shifftie/Models/users.dart';
 import 'package:the_apple_sign_in/the_apple_sign_in.dart' as apple;
 
 import '../common/config.dart';
@@ -12,11 +13,11 @@ import '../services/index.dart';
 import 'entities/user.dart';
 
 abstract class UserModelDelegate {
-  void onLoaded(User? user);
+  void onLoaded(AppUserModel? user);
 
-  void onLoggedIn(User user);
+  void onLoggedIn(AppUserModel user);
 
-  void onLogout(User? user);
+  void onLogout(AppUserModel? user);
 }
 
 class UserModel with ChangeNotifier {

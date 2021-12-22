@@ -3,16 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:quiver/strings.dart';
-
-import '../../../common/tools.dart';
-import '../../../widgets/common/firestore_animated_list.dart';
 import '../firebase_service.dart';
 
 class MessagesStream extends StatefulWidget {
   final String? documentId;
   final String? senderEmail;
 
-  const MessagesStream({this.documentId, this.senderEmail});
+   const MessagesStream({Key? key, this.documentId, this.senderEmail}) : super(key: key);
 
   @override
   _MessagesStreamState createState() => _MessagesStreamState();

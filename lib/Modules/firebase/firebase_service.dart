@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -7,12 +6,8 @@ import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/cupertino.dart';
-
-import '../../common/config.dart';
-import '../../common/constants.dart';
-import '../../common/tools.dart';
+import 'package:gms_check/gms_check.dart';
 import '../../services/base_firebase_services.dart';
-import '../../services/services.dart';
 import 'dynamic_link_service.dart';
 import 'firebase_analytics_service.dart';
 import 'firebase_remote_config.dart';
@@ -40,25 +35,21 @@ class FirebaseServices extends BaseFirebaseServices {
   Future<void> init() async {
     var startTime = DateTime.now();
     await Firebase.initializeApp();
-    _isEnabled = kAdvanceConfig['EnableFirebase'] ?? false;
+    // _isEnabled = kAdvanceConfig['EnableFirebase'] ?? false;
 
     /// Not require Play Services
     /// https://firebase.google.com/docs/android/android-play-services
     _auth = FirebaseAuth.instance;
     _firestore = FirebaseFirestore.instance;
 
-    if (!kIsWeb) {
-      _remoteConfig = FirebaseRemoteConfig(RemoteConfig.instance);
-    }
-
     /// Require Play Services
     const message = '[FirebaseServices] Init successfully';
     if (GmsCheck().isGmsAvailable) {
       _messaging = FirebaseMessaging.instance;
       _dynamicLinks = FirebaseDynamicLinks.instance;
-      printLog(message, startTime);
+      print('$message $startTime');
     } else {
-      printLog('$message (without Google Play Services)', startTime);
+      print('$message (without Google Play Services) $startTime');
     }
   }
 
@@ -149,7 +140,7 @@ class FirebaseServices extends BaseFirebaseServices {
   @override
   void saveUserToFirestore({user}) async {
     final token = await FirebaseServices().messaging!.getToken();
-    printLog('token: $token');
+    print('token: $token');
     await FirebaseServices()
         .firestore!
         .collection('users')
@@ -164,7 +155,7 @@ class FirebaseServices extends BaseFirebaseServices {
             .api
             .updateUserInfo({'deviceToken': token}, user!.cookie);
       } catch (e) {
-        printLog(e);
+        print(e);
       }
     }
   }

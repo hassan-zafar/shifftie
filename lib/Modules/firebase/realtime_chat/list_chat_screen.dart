@@ -3,8 +3,8 @@ import 'package:collection/collection.dart' show IterableExtension;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:shifftie/Providers/user_model.dart';
 import 'package:timeago/timeago.dart' as timeago;
-
 
 import '../../../screens/base_screen.dart';
 import '../firebase_service.dart';
@@ -26,7 +26,7 @@ class ListChatScreen extends StatelessWidget {
           },
         ),
         title: Text(
-          S.of(context).chatListScreen,
+          "Chat List Screen",
           style: TextStyle(color: Theme.of(context).colorScheme.secondary),
         ),
       ),

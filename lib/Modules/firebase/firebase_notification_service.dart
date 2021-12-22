@@ -3,9 +3,7 @@ import 'dart:async';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
-import '../../common/constants.dart';
-import '../../models/entities/index.dart';
-import '../../services/notification/notification_service.dart';
+
 
 class FirebaseNotificationService extends NotificationService {
   final _instance = FirebaseMessaging.instance;

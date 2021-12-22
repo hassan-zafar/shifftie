@@ -2,25 +2,23 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart' show IterableExtension;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shifftie/Models/users.dart';
 import 'package:timeago/timeago.dart' as timeago;
-
-import '../../../generated/l10n.dart';
-import '../../../models/entities/user.dart';
 import '../../../screens/base_screen.dart';
 import '../firebase_service.dart';
 import 'chat_screen.dart';
 
 class VendorListChatScreen extends StatelessWidget {
-  final User? user;
+  final AppUserModel? user;
 
-  const VendorListChatScreen({this.user});
+   const VendorListChatScreen({Key? key, this.user}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          S.of(context).chatListScreen,
+          'Chat List Screen',
           style: Theme.of(context).textTheme.headline5,
         ),
         centerTitle: true,
@@ -36,9 +34,9 @@ class VendorListChatScreen extends StatelessWidget {
 }
 
 class ChatItemsStream extends StatefulWidget {
-  final User user;
+  final AppUserModel user;
 
-  const ChatItemsStream({required this.user});
+   const ChatItemsStream({Key? key, required this.user}) : super(key: key);
 
   @override
   _ChatItemsStreamState createState() => _ChatItemsStreamState();
@@ -86,11 +84,11 @@ class _ChatItemsStreamState extends BaseScreen<ChatItemsStream> {
 }
 
 class ChatItem extends StatelessWidget {
-  final User user;
+  final AppUserModel user;
 
   final String? documentId;
 
-  const ChatItem({required this.user, this.documentId});
+   const ChatItem({Key? key, required this.user, this.documentId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -53,7 +53,8 @@ dependencies:
   firebase_remote_config:
   firebase_dynamic_links:
   google_sign_in: ^5.0.7
-
+  gms_check: ^1.0.0
+  notification_permissions:
 
   get_storage:
   flutter_local_notifications:

@@ -49,15 +49,19 @@ class _PostInfoState extends State<PostInfo> {
   UploadTask? task;
   File? file;
 
-  var _productTitle = '';
-  String _productVideoUrl = '';
-  var _productCategory = '';
+  String _postTitle = '';
+  String _postVideoUrl = '';
+  var _postCategory = '';
   var _subHeading = '';
 
   var _categoryDescription = '';
-  var _productDescription = '';
+  var _postDescription = '';
   var _videoLength = '';
+  final TextEditingController _postDescriptionController = TextEditingController();
+  final TextEditingController _subHeadingController = TextEditingController();
+  final TextEditingController _postTitleController = TextEditingController();
   final TextEditingController _categoryController = TextEditingController();
+
   final TextEditingController _categoryDescriptionController =
       TextEditingController();
   String? _categoryValue;
@@ -109,8 +113,8 @@ class _PostInfoState extends State<PostInfo> {
 
   Future uploadFile() async {
     if (file == null) return;
-    final fileName = _productTitle;
-    final destination = 'videos/$_productCategory/$fileName';
+    final fileName = _postTitle;
+    final destination = 'videos/$_postCategory/$fileName';
 
     task = FirebaseApi.uploadFile(destination, file!);
     setState(() {});
@@ -120,7 +124,7 @@ class _PostInfoState extends State<PostInfo> {
     final snapshot = await task!.whenComplete(() {});
     final urlDownload = await snapshot.ref.getDownloadURL();
     setState(() {
-      _productVideoUrl = urlDownload;
+      _postVideoUrl = urlDownload;
     });
     CustomToast.successToast(message: "Video Uploaded SuccessFully");
     print('Download-Link: $urlDownload');
@@ -136,7 +140,7 @@ class _PostInfoState extends State<PostInfo> {
 
             return Text(
               '$percentage %',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             );
           } else {
             return Container();
@@ -151,10 +155,10 @@ class _PostInfoState extends State<PostInfo> {
 
     if (isValid) {
       _formKey.currentState!.save();
-      print(_productTitle);
-      print(_productCategory);
+      print(_postTitle);
+      print(_postCategory);
       print(_categoryDescription);
-      print(_productDescription);
+      print(_postDescription);
       print(_videoLength);
       // Use those values to send our request ...
     }
@@ -163,7 +167,7 @@ class _PostInfoState extends State<PostInfo> {
       try {
         if (_pickedImage == null) {
           _globalMethods.authErrorHandle('Please pick an image', context);
-        } else if (_productVideoUrl == null) {
+        } else if (_postVideoUrl == null) {
           _globalMethods.authErrorHandle('Please pick a video', context);
         } else {
           setState(() {
@@ -172,25 +176,25 @@ class _PostInfoState extends State<PostInfo> {
           final ref = FirebaseStorage.instance
               .ref()
               .child('postImages')
-              .child(_productTitle + '.jpg');
+              .child(_postTitle + '.jpg');
           await ref.putFile(_pickedImage!);
           url = await ref.getDownloadURL();
 
           await uploadFile();
           final _uid = currentUser!.id;
-          final productId = uuid.v4();
+          final postId = uuid.v4();
           await FirebaseFirestore.instance
               .collection('shiftties')
-              .doc(productId)
+              .doc(postId)
               .set({
-            'postId': productId,
-            'postTitle': _productTitle,
-            'videoUrl': _productVideoUrl,
+            'postId': postId,
+            'postTitle': _postTitle,
+            'videoUrl': _postVideoUrl,
             'posttImageUrl': url,
-            'postCategory': _productCategory,
+            'postCategory': _postCategory,
             'subHeading': _subHeading,
             'categoryDescription': _categoryDescription,
-            'postDescription': _productDescription,
+            'postDescription': _postDescription,
             'videoLength': _videoLength,
             'userId': _uid,
             'userName': currentUser!.name,
@@ -275,19 +279,20 @@ class _PostInfoState extends State<PostInfo> {
                           // ),
                           label: '    ' +
                               AppLocalizations.of(context)!.describeVideo!,
+                          controller: _subHeadingController,
                         ),
                       ),
                     ),
                   ],
                 ),
-                const EntryField(
-                  textCapitalization: TextCapitalization.words,
+                 EntryField(
+                  textCapitalization: TextCapitalization.words,controller: _postTitleController,
                   label: 'Shifttie Title',
                   keyboardType: TextInputType.emailAddress,
                 ),
-                const EntryField(
+                 EntryField(
                   textCapitalization: TextCapitalization.words,
-                  label: 'Short Description',
+                  label: 'Short Description',controller: _postDescriptionController,
                   keyboardType: TextInputType.emailAddress,
                 ),
                 const EntryField(

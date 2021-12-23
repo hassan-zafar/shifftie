@@ -75,6 +75,7 @@ dependencies:
   image:
   file_picker:
 
+  http:
 #payment
   flutter_stripe:
 

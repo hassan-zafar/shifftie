@@ -6,10 +6,14 @@ import 'package:shifftie/Components/profile_page_button.dart';
 import 'package:shifftie/Components/row_item.dart';
 import 'package:shifftie/Components/sliver_app_delegate.dart';
 import 'package:shifftie/Components/tab_grid.dart';
+import 'package:shifftie/Constants/constants.dart';
 import 'package:shifftie/Locale/locale.dart';
+import 'package:shifftie/Modules/firebase/realtime_chat/chat_screen.dart';
 import 'package:shifftie/Routes/routes.dart';
 import 'package:shifftie/BottomNavigation/MyProfile/edit_profile.dart';
 import 'package:shifftie/BottomNavigation/MyProfile/followers.dart';
+import 'package:shifftie/Screens/Chat/chat_page.dart';
+import 'package:shifftie/Screens/Chat/comments_N_Chat.dart';
 import 'package:shifftie/Theme/colors.dart';
 import 'package:shifftie/BottomNavigation/Explore/explore_page.dart';
 import 'package:shifftie/BottomNavigation/MyProfile/following.dart';
@@ -131,13 +135,25 @@ class _MyProfileBodyState extends State<MyProfileBody> {
                                       paddingVert: 6,
                                       fontSize: 8,
                                       borderRadius: borderRadius,
-                                      onTap: () {},
+                                      onTap: () {
+                                        print('here');
+                                      },
                                       isGradient: true,
                                       text: 'Subscribe 9\$/Mo for Exclusivity'),
-                                  Icon(
-                                    Icons.message_outlined,
-                                    color: lightTextColor,
-                                    size: 18,
+                                  InkWell(
+                                    onTap: () {
+                                      Navigator.of(context)
+                                          .push(MaterialPageRoute(
+                                        builder: (context) => CommentsNChat(
+                                            chatId: currentUser!.id,
+                                            chatNotificationToken: 'asd'),
+                                      ));
+                                    },
+                                    child: Icon(
+                                      Icons.message_outlined,
+                                      color: lightTextColor,
+                                      size: 18,
+                                    ),
                                   )
                                 ],
                               ),

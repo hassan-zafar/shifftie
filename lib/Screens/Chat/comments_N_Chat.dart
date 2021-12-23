@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:shifftie/Constants/collections.dart';
 import 'package:shifftie/Constants/constants.dart';
 import 'package:shifftie/Models/users.dart';
+import 'package:shifftie/Screens/Chat/chat_page.dart';
 import 'package:shifftie/Services/notificationHandler.dart';
 import 'package:shifftie/utilities/custom_toast.dart';
 import 'package:shifftie/utilities/show_loading.dart';
@@ -110,6 +111,10 @@ class CommentsNChatState extends State<CommentsNChat> {
 
   addChatMessage() {
     String commentId = const Uuid().v1();
+    String date = DateTime.now().toString();
+    DateTime dateparse = DateTime.parse(date);
+    String formattedDate =
+        '${dateparse.day}-${dateparse.month}-${dateparse.year}';
     if (_commentNMessagesController.text.trim().length > 1) {
       chatRoomRef
           .doc(currentUser!.isAdmin != null && currentUser!.isAdmin == true
@@ -123,6 +128,7 @@ class CommentsNChatState extends State<CommentsNChat> {
         "androidNotificationToken": currentUser!.androidNotificationToken,
         "comment": _commentNMessagesController.text,
         "timestamp": DateTime.now(),
+        // 'formattedTime':
         "avatarUrl": currentUser!.imageUrl,
         "commentId": commentId,
       });
@@ -172,9 +178,9 @@ class CommentsNChatState extends State<CommentsNChat> {
         centerTitle: true,
         elevation: 0,
         backgroundColor: Colors.transparent,
-        title: Text(
-          currentUser!.isAdmin! ? "Manage Queries" : "Contact Admin",
-          style: const TextStyle(color: Colors.black),
+        title: const Text(
+          "Message",
+          // style: const TextStyle(color: Colors.black),
         ),
       ),
       body: Padding(
@@ -189,14 +195,15 @@ class CommentsNChatState extends State<CommentsNChat> {
               title: TextFormField(
                 controller: _commentNMessagesController,
                 decoration: const InputDecoration(
-                  hintText: "Write a message...",
-                ),
+                    hintText: "Write a message...",
+                    hintStyle: TextStyle(color: Colors.white)),
               ),
               trailing: IconButton(
                 onPressed: addChatMessage,
-                icon: Icon(
+                icon: const Icon(
                   Icons.send,
                   size: 40.0,
+                  color: Colors.white,
                 ),
               ),
             ),
@@ -254,79 +261,86 @@ class _CommentsNMessagesState extends State<CommentsNMessages> {
 
   buildMessageBubble(BuildContext context) {
     bool isMe = currentUser!.id == widget.userId;
-    return Padding(
-      padding: const EdgeInsets.only(left: 14.0, right: 14.0),
-      child: Container(
-        width: MediaQuery.of(context).size.width * 0.5,
-        decoration: BoxDecoration(
-          color: isMe ? Colors.orange : Colors.brown,
-          borderRadius: isMe
-              ? BorderRadius.only(
-                  bottomLeft: Radius.circular(20),
-                  bottomRight: Radius.circular(20),
-                  topLeft: Radius.circular(20),
-                )
-              : BorderRadius.only(
-                  bottomLeft: Radius.circular(20),
-                  bottomRight: Radius.circular(20),
-                  topRight: Radius.circular(20),
-                ),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  widget.avatarUrl != null && widget.avatarUrl != ''
-                      ? CircleAvatar(
-                          backgroundImage:
-                              CachedNetworkImageProvider(widget.avatarUrl!),
-                        )
-                      : CircleAvatar(backgroundImage: AssetImage(logo)),
-                  SizedBox(
-                    width: 8,
-                  ),
-                  Expanded(
-                    child: Column(
-                      // crossAxisAlignment: CrossAxisAlignment.start,
-                      // mainAxisAlignment: MainAxisAlignment.start,
-                      // mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Text("${widget.userName} : ",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 14.0,
-                                    color: Colors.white)),
-                            Flexible(
-                              child: Text(
-                                "${widget.comment}",
-                                style: TextStyle(
-                                    fontSize: 14.0, color: Colors.white),
-                              ),
-                            ),
-                          ],
-                        ),
-                        // Text(
-                        //   timeago.format(widget.timestamp!.toDate()),
-                        //   style: TextStyle(color: Colors.black54, fontSize: 12),
-                        // ),
-                      ],
-                    ),
-                  )
-                ],
-              ),
-            ],
-          ),
-        ),
-      ),
+    return MessageBubble(
+      isMe: isMe,
+      isDelivered: false,
+      text: widget.comment,
+      time:
+          '${widget.timestamp!.toDate().hour}:${widget.timestamp!.toDate().minute}',
     );
+    //  Padding(
+    //   padding: const EdgeInsets.only(left: 14.0, right: 14.0),
+    //   child: Container(
+    //     width: MediaQuery.of(context).size.width * 0.5,
+    //     decoration: BoxDecoration(
+    //       color: isMe ? Colors.orange : Colors.brown,
+    //       borderRadius: isMe
+    //           ? BorderRadius.only(
+    //               bottomLeft: Radius.circular(20),
+    //               bottomRight: Radius.circular(20),
+    //               topLeft: Radius.circular(20),
+    //             )
+    //           : BorderRadius.only(
+    //               bottomLeft: Radius.circular(20),
+    //               bottomRight: Radius.circular(20),
+    //               topRight: Radius.circular(20),
+    //             ),
+    //     ),
+    //     child: Padding(
+    //       padding: const EdgeInsets.all(12.0),
+    //       child: Column(
+    //         crossAxisAlignment: CrossAxisAlignment.start,
+    //         mainAxisAlignment: MainAxisAlignment.start,
+    //         children: <Widget>[
+    //           Row(
+    //             crossAxisAlignment: CrossAxisAlignment.center,
+    //             children: [
+    //               widget.avatarUrl != null && widget.avatarUrl != ''
+    //                   ? CircleAvatar(
+    //                       backgroundImage:
+    //                           CachedNetworkImageProvider(widget.avatarUrl!),
+    //                     )
+    //                   : CircleAvatar(backgroundImage: AssetImage(logo)),
+    //               SizedBox(
+    //                 width: 8,
+    //               ),
+    //               Expanded(
+    //                 child: Column(
+    //                   // crossAxisAlignment: CrossAxisAlignment.start,
+    //                   // mainAxisAlignment: MainAxisAlignment.start,
+    //                   // mainAxisSize: MainAxisSize.min,
+    //                   children: [
+    //                     Row(
+    //                       crossAxisAlignment: CrossAxisAlignment.start,
+    //                       mainAxisAlignment: MainAxisAlignment.start,
+    //                       children: [
+    //                         Text("${widget.userName} : ",
+    //                             style: TextStyle(
+    //                                 fontWeight: FontWeight.bold,
+    //                                 fontSize: 14.0,
+    //                                 color: Colors.white)),
+    //                         Flexible(
+    //                           child: Text(
+    //                             "${widget.comment}",
+    //                             style: TextStyle(
+    //                                 fontSize: 14.0, color: Colors.white),
+    //                           ),
+    //                         ),
+    //                       ],
+    //                     ),
+    //                     // Text(
+    //                     //   timeago.format(widget.timestamp!.toDate()),
+    //                     //   style: TextStyle(color: Colors.black54, fontSize: 12),
+    //                     // ),
+    //                   ],
+    //                 ),
+    //               )
+    //             ],
+    //           ),
+    //         ],
+    //       ),
+    //     ),
+    //   ),
+    // );
   }
 }

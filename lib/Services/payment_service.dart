@@ -75,7 +75,7 @@ class PaymentService {
   createPaymentIntent(String amount, String currency) async {
     try {
       Map<String, dynamic> body = {
-        'amount': calculateAmount('9.99'),
+        'amount': calculateAmount(amount),
         'currency': currency,
         'payment_method_types[]': 'card'
       };
@@ -85,7 +85,7 @@ class PaymentService {
           body: body,
           headers: {
             'Authorization':
-                'Bearer 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',
+                'Bearer sk_test_51JvN23LbLnT1uHuWUJahSXKDn2LO7cZG4cciGVCw1tUrvEQT6W2kNyOdEhFyCEiwDIwm3mnFMeTbT6hqVWkxcp8V00jAv01FBf',
             'Content-Type': 'application/x-www-form-urlencoded'
           });
       print('Create Intent reponse ===> ${response.body.toString()}');

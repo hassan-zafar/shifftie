@@ -1,89 +1,122 @@
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class ShifttiePostModel {
   final String? postId;
-  final String? ownerId;
+  final String? userId;
   final String? userName;
   final String? postTitle;
-  final String? description;
-  final String? postMediaUrl;
+  final String? videoUrl;
+  final String? postDescription;
+  final String? videoLength;
+  final Timestamp? createdAt;
+
+  final String? postCategory;
+  final String? posttImageUrl;
   final String? subHeading;
   final dynamic likes;
-  final String? videoLink;
+  final String? categoryDescription;
   ShifttiePostModel({
     this.postId,
-    this.ownerId,
+    this.userId,
     this.userName,
     this.postTitle,
-    this.description,
-    this.postMediaUrl,
+    this.videoUrl,
+    this.postDescription,
+    this.videoLength,
+    this.createdAt,
+    this.postCategory,
+    this.posttImageUrl,
     this.subHeading,
     this.likes,
-    this.videoLink,
+    this.categoryDescription,
   });
 
   ShifttiePostModel copyWith({
     String? postId,
-    String? ownerId,
+    String? userId,
     String? userName,
     String? postTitle,
-    String? description,
-    String? postMediaUrl,
+    String? videoUrl,
+    String? postDescription,
+    String? videoLength,
+    Timestamp? createdAt,
+    String? postCategory,
+    String? posttImageUrl,
     String? subHeading,
-    dynamic likes,
-    String? videoLink,
+    dynamic? likes,
+    String? categoryDescription,
   }) {
     return ShifttiePostModel(
       postId: postId ?? this.postId,
-      ownerId: ownerId ?? this.ownerId,
+      userId: userId ?? this.userId,
       userName: userName ?? this.userName,
       postTitle: postTitle ?? this.postTitle,
-      description: description ?? this.description,
-      postMediaUrl: postMediaUrl ?? this.postMediaUrl,
+      videoUrl: videoUrl ?? this.videoUrl,
+      postDescription: postDescription ?? this.postDescription,
+      videoLength: videoLength ?? this.videoLength,
+      createdAt: createdAt ?? this.createdAt,
+      postCategory: postCategory ?? this.postCategory,
+      posttImageUrl: posttImageUrl ?? this.posttImageUrl,
       subHeading: subHeading ?? this.subHeading,
       likes: likes ?? this.likes,
-      videoLink: videoLink ?? this.videoLink,
+      categoryDescription: categoryDescription ?? this.categoryDescription,
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
       'postId': postId,
-      'ownerId': ownerId,
+      'userId': userId,
       'userName': userName,
       'postTitle': postTitle,
-      'description': description,
-      'postMediaUrl': postMediaUrl,
+      'videoUrl': videoUrl,
+      'postDescription': postDescription,
+      'videoLength': videoLength,
+      'createdAt': createdAt,
+      'postCategory': postCategory,
+      'posttImageUrl': posttImageUrl,
       'subHeading': subHeading,
       'likes': likes,
-      'videoLink': videoLink,
+      'categoryDescription': categoryDescription,
     };
   }
 
   factory ShifttiePostModel.fromDocument(doc) {
     return ShifttiePostModel(
-      postId: doc.data()["postId"],
-      ownerId: doc.data()["ownerId"],
-      userName: doc.data()["userName"],
-      description: doc.data()["description"],
-      postTitle: doc.data()["postTitle"],
-      postMediaUrl: doc.data()["postMediaUrl"],
-      likes: doc.data()['likes'],
-      subHeading: doc.data()['subHeading'],
-      videoLink: doc.data()['videoLink'],
+      postId: doc.date()['postId'],
+      userId: doc.date()['userId'],
+      userName: doc.date()['userName'],
+      postTitle: doc.date()['postTitle'],
+      videoUrl: doc.date()['videoUrl'],
+      postDescription: doc.date()['postDescription'],
+      videoLength: doc.date()['videoLength'],
+      createdAt:
+          doc.date()['createdAt'] != null ? doc.date()['createdAt'] : null,
+      postCategory: doc.date()['postCategory'],
+      posttImageUrl: doc.date()['posttImageUrl'],
+      subHeading: doc.date()['subHeading'],
+      likes: doc.date()['likes'] ?? null,
+      categoryDescription: doc.date()['categoryDescription'],
     );
   }
   factory ShifttiePostModel.fromMap(Map<String, dynamic> map) {
     return ShifttiePostModel(
       postId: map['postId'],
-      ownerId: map['ownerId'],
+      userId: map['userId'],
       userName: map['userName'],
       postTitle: map['postTitle'],
-      description: map['description'],
-      postMediaUrl: map['postMediaUrl'],
+      videoUrl: map['videoUrl'],
+      postDescription: map['postDescription'],
+      videoLength: map['videoLength'],
+      createdAt: map['createdAt'],
+      // != null ? Timestamp.fromMap(map['createdAt']) : null,
+      postCategory: map['postCategory'],
+      posttImageUrl: map['posttImageUrl'],
       subHeading: map['subHeading'],
-      likes: map['likes'],
-      videoLink: map['videoLink'],
+      likes: map['likes'] ?? null,
+      categoryDescription: map['categoryDescription'],
     );
   }
 
@@ -94,7 +127,7 @@ class ShifttiePostModel {
 
   @override
   String toString() {
-    return 'ShifttiePostModel(postId: $postId, ownerId: $ownerId, userName: $userName, postTitle: $postTitle, description: $description, postMediaUrl: $postMediaUrl, subHeading: $subHeading, likes: $likes, videoLink: $videoLink)';
+    return 'ShifttiePostModel(postId: $postId, userId: $userId, userName: $userName, postTitle: $postTitle, videoUrl: $videoUrl, postDescription: $postDescription, videoLength: $videoLength, createdAt: $createdAt, postCategory: $postCategory, posttImageUrl: $posttImageUrl, subHeading: $subHeading, likes: $likes, categoryDescription: $categoryDescription)';
   }
 
   @override
@@ -103,26 +136,34 @@ class ShifttiePostModel {
 
     return other is ShifttiePostModel &&
         other.postId == postId &&
-        other.ownerId == ownerId &&
+        other.userId == userId &&
         other.userName == userName &&
         other.postTitle == postTitle &&
-        other.description == description &&
-        other.postMediaUrl == postMediaUrl &&
+        other.videoUrl == videoUrl &&
+        other.postDescription == postDescription &&
+        other.videoLength == videoLength &&
+        other.createdAt == createdAt &&
+        other.postCategory == postCategory &&
+        other.posttImageUrl == posttImageUrl &&
         other.subHeading == subHeading &&
         other.likes == likes &&
-        other.videoLink == videoLink;
+        other.categoryDescription == categoryDescription;
   }
 
   @override
   int get hashCode {
     return postId.hashCode ^
-        ownerId.hashCode ^
+        userId.hashCode ^
         userName.hashCode ^
         postTitle.hashCode ^
-        description.hashCode ^
-        postMediaUrl.hashCode ^
+        videoUrl.hashCode ^
+        postDescription.hashCode ^
+        videoLength.hashCode ^
+        createdAt.hashCode ^
+        postCategory.hashCode ^
+        posttImageUrl.hashCode ^
         subHeading.hashCode ^
         likes.hashCode ^
-        videoLink.hashCode;
+        categoryDescription.hashCode;
   }
 }

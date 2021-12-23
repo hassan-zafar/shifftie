@@ -1,14 +1,24 @@
+import 'dart:io';
+
 import 'package:animation_wrappers/animation_wrappers.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:file_picker/file_picker.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shifftie/Components/continue_button.dart';
 import 'package:shifftie/Components/entry_field.dart';
 import 'package:shifftie/Components/post_thumb_list.dart';
+import 'package:shifftie/Constants/constants.dart';
 import 'package:shifftie/Locale/locale.dart';
+import 'package:shifftie/Services/firebase_api.dart';
+import 'package:shifftie/Services/global_method.dart';
 import 'package:shifftie/Theme/colors.dart';
 import 'package:shifftie/utilities/custom_toast.dart';
+import 'package:uuid/uuid.dart';
+import 'package:video_player/video_player.dart';
 
 class PostInfo extends StatefulWidget {
   const PostInfo({Key? key}) : super(key: key);
@@ -35,13 +45,15 @@ class _PostInfoState extends State<PostInfo> {
     'assets/thumbnails/dance/Layer 953.png',
     'assets/thumbnails/dance/Layer 954.png',
   ];
-    final _formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
   UploadTask? task;
   File? file;
 
   var _productTitle = '';
   String _productVideoUrl = '';
   var _productCategory = '';
+  var _subHeading = '';
+
   var _categoryDescription = '';
   var _productDescription = '';
   var _videoLength = '';
@@ -49,14 +61,14 @@ class _PostInfoState extends State<PostInfo> {
   final TextEditingController _categoryDescriptionController =
       TextEditingController();
   String? _categoryValue;
-  GlobalMethods _globalMethods = GlobalMethods();
+  final GlobalMethods _globalMethods = GlobalMethods();
   final FirebaseAuth _auth = FirebaseAuth.instance;
   File? _pickedImage;
   bool _isLoading = false;
   bool _isVideoSelected = false;
 
   late String url;
-  var uuid = Uuid();
+  var uuid = const Uuid();
   showAlertDialog(BuildContext context, String title, String body) {
     // show the dialog
     showDialog(
@@ -66,8 +78,8 @@ class _PostInfoState extends State<PostInfo> {
           title: Text(title),
           content: Text(body),
           actions: [
-            FlatButton(
-              child: Text("OK"),
+            TextButton(
+              child: const Text("OK"),
               onPressed: () {
                 Navigator.of(context).pop();
               },
@@ -77,6 +89,7 @@ class _PostInfoState extends State<PostInfo> {
       },
     );
   }
+
   Future selectFile() async {
     final result = await FilePicker.platform
         .pickFiles(allowMultiple: false, type: FileType.video);
@@ -164,8 +177,7 @@ class _PostInfoState extends State<PostInfo> {
           url = await ref.getDownloadURL();
 
           await uploadFile();
-          final User? user = _auth.currentUser;
-          final _uid = user!.uid;
+          final _uid = currentUser!.id;
           final productId = uuid.v4();
           await FirebaseFirestore.instance
               .collection('shiftties')
@@ -176,10 +188,12 @@ class _PostInfoState extends State<PostInfo> {
             'videoUrl': _productVideoUrl,
             'posttImageUrl': url,
             'postCategory': _productCategory,
+            'subHeading': _subHeading,
             'categoryDescription': _categoryDescription,
             'postDescription': _productDescription,
             'videoLength': _videoLength,
             'userId': _uid,
+            'userName': currentUser!.name,
             'createdAt': Timestamp.now(),
           });
           Navigator.canPop(context) ? Navigator.pop(context) : null;
@@ -227,7 +241,6 @@ class _PostInfoState extends State<PostInfo> {
       // _pickedImage = null;
     });
   }
-
 
   @override
   Widget build(BuildContext context) {

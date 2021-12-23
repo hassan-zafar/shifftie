@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:shifftie/Constants/collections.dart';
@@ -53,7 +53,7 @@ class PaymentService {
               DateTime.now().add(const Duration(days: 30)).toIso8601String()
         });
         ScaffoldMessenger.of(context)
-            .showSnackBar(const SnackBar(content:  Text("paid successfully")));
+            .showSnackBar(const SnackBar(content: Text("paid successfully")));
 
         paymentIntentData = null;
       }).onError((error, stackTrace) {

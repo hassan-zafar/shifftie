@@ -63,12 +63,15 @@ dependencies:
   timeago:
   share:
 
+
   #image related
   multi_image_picker2:
   image_picker:
   flutter_native_image:
   extended_image:
   transparent_image:
+  font_awesome_flutter:
+  image:
     # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
 

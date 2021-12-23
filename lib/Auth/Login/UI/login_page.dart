@@ -136,9 +136,17 @@ class _LoginBodyState extends State<LoginBody> {
                       width: 140,
                       color: Colors.green,
                       isGradient: false,
-                      onTap: () {
-                        Navigator.pushNamed(
-                            context, PageRoutes.bottomNavigation);
+                      onTap: () async {
+                        final bool _login =
+                            await AuthMethod().signinWithGoogle();
+                        if (_login) {
+                          Navigator.of(context).pushNamedAndRemoveUntil(
+                            PageRoutes.bottomNavigation,
+                            (Route<dynamic> route) => false,
+                          );
+                        } else {
+                          Navigator.of(context).pop();
+                        }
                       }),
                 ],
               ),
@@ -170,7 +178,7 @@ class _LoginBodyState extends State<LoginBody> {
                   splashColor: Colors.white,
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) =>  RegisterPage(),
+                      builder: (context) => RegisterPage(),
                     ));
                   },
                   child: RichText(

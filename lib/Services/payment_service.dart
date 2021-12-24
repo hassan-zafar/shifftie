@@ -10,8 +10,8 @@ class PaymentService {
 
   Future<void> makePayment(BuildContext context, String price) async {
     try {
-      paymentIntentData = await createPaymentIntent(
-          'price', 'USD'); //json.decode(response.body);
+      paymentIntentData =
+          await createPaymentIntent('9', 'USD'); //json.decode(response.body);
       // print('Response body==>${response.body.toString()}');
       await Stripe.instance
           .initPaymentSheet(

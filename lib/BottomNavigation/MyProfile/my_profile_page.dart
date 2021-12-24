@@ -14,6 +14,7 @@ import 'package:shifftie/BottomNavigation/MyProfile/edit_profile.dart';
 import 'package:shifftie/BottomNavigation/MyProfile/followers.dart';
 import 'package:shifftie/Screens/Chat/chat_page.dart';
 import 'package:shifftie/Screens/Chat/comments_N_Chat.dart';
+import 'package:shifftie/Services/payment_service.dart';
 import 'package:shifftie/Theme/colors.dart';
 import 'package:shifftie/BottomNavigation/Explore/explore_page.dart';
 import 'package:shifftie/BottomNavigation/MyProfile/following.dart';
@@ -135,8 +136,10 @@ class _MyProfileBodyState extends State<MyProfileBody> {
                                       paddingVert: 6,
                                       fontSize: 8,
                                       borderRadius: borderRadius,
-                                      onTap: () {
+                                      onTap: () async {
                                         print('here');
+                                        await PaymentService()
+                                            .makePayment(context, '9');
                                       },
                                       isGradient: true,
                                       text: 'Subscribe 9\$/Mo for Exclusivity'),

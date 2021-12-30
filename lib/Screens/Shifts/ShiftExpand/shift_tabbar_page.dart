@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shifftie/Components/tab_grid.dart';
 import 'package:shifftie/Routes/routes.dart';
-import 'package:shifftie/Shifts/ShiftExpand/commentPage.dart';
-import 'package:shifftie/Shifts/ShiftExpand/shift_details.dart';
+import 'package:shifftie/Screens/Shifts/ShiftExpand/commentPage.dart';
+import 'package:shifftie/Screens/Shifts/ShiftExpand/shift_details.dart';
 import 'package:shifftie/Theme/colors.dart';
 
 class ShiftTabBarPage extends StatefulWidget {

@@ -4,10 +4,10 @@ import 'package:shifftie/BottomNavigation/Explore/explore_page.dart';
 import 'package:shifftie/Components/thumb_list.dart';
 import 'package:shifftie/Components/titleRow.dart';
 import 'package:shifftie/Locale/locale.dart';
-import 'package:shifftie/Shifts/donations_sheet.dart';
 import 'package:shifftie/Theme/colors.dart';
 import 'package:shifftie/utilities/custom_unicorn_button.dart';
-import 'package:shifftie/utilities/utilities.dart';
+
+import '../donations_sheet.dart';
 
 class ShiftDetailsPage extends StatefulWidget {
   const ShiftDetailsPage({Key? key}) : super(key: key);

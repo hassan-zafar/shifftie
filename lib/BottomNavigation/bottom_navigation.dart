@@ -4,7 +4,7 @@ import 'package:shifftie/BottomNavigation/Home/home_page.dart';
 import 'package:shifftie/BottomNavigation/MyProfile/my_profile_page.dart';
 import 'package:shifftie/Locale/locale.dart';
 import 'package:shifftie/Routes/routes.dart';
-import 'package:shifftie/Shifts/shifts_follow_screen.dart';
+import 'package:shifftie/Screens/Shifts/shifts_follow_screen.dart';
 import 'package:shifftie/Theme/colors.dart';
 import 'package:shifftie/Theme/style.dart';
 

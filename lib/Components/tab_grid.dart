@@ -4,7 +4,7 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:shifftie/Auth/interests_page.dart';
 import 'package:shifftie/BottomNavigation/Home/following_tab.dart';
 import 'package:shifftie/BottomNavigation/Home/home_page.dart';
-import 'package:shifftie/Shifts/ShiftExpand/vote_expand_page.dart';
+import 'package:shifftie/Screens/Shifts/ShiftExpand/vote_expand_page.dart';
 import 'package:shifftie/utilities/utilities.dart';
 
 class Grid {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shifftie/Components/entry_field.dart';
-import 'package:shifftie/DashBoard/ActivityStats/Widgets/line_chart.dart';
+import 'package:shifftie/Screens/DashBoard/ActivityStats/Widgets/line_chart.dart';
 
 class ActivityStatPage extends StatefulWidget {
   const ActivityStatPage({Key? key}) : super(key: key);

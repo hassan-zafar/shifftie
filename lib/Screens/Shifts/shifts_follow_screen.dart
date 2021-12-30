@@ -1,9 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:shifftie/Auth/interests_page.dart';
+import 'package:shifftie/BottomNavigation/AddVideo/post_info.dart';
 import 'package:shifftie/Components/custom_text_button.dart';
-import 'package:shifftie/Routes/routes.dart';
-import 'package:shifftie/Shifts/ShiftExpand/shift_tabbar_page.dart';
+import 'package:shifftie/Screens/Shifts/ShiftExpand/shift_tabbar_page.dart';
 import 'package:shifftie/Theme/colors.dart';
 
 class ShiftYouFollowScreen extends StatefulWidget {
@@ -26,7 +26,10 @@ class _ShiftYouFollowScreenState extends State<ShiftYouFollowScreen> {
             children: [
               CustomTextButton(
                   onTap: () =>
-                      Navigator.pushNamed(context, PageRoutes.bottomNavigation),
+                      // Navigator.pushNamed(context, PageRoutes.addVideoPage),
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => PostInfo(),
+                      )),
                   isGradient: true,
                   text: 'Start a new shift'),
               shifttieEventWidget(),

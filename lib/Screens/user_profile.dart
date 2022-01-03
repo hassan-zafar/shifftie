@@ -91,7 +91,7 @@ class _UserProfileBodyState extends State<UserProfileBody> {
                           children: [
                             const Spacer(flex: 12),
                             const Text(
-                              'Emili Williamson',
+                             currentUser. 'Emili Williamson',
                               style: TextStyle(fontSize: 16),
                             ),
                             const Spacer(),

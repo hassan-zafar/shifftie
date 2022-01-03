@@ -35,6 +35,7 @@ void main() async {
 
   await Firebase.initializeApp();
   // await LocalDB().init();
+  
   await SystemChrome.setPreferredOrientations(<DeviceOrientation>[
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,

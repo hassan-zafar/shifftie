@@ -1,4 +1,5 @@
 import 'package:animation_wrappers/animation_wrappers.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:shifftie/Components/custom_text_button.dart';
@@ -117,15 +118,17 @@ class _MyProfileBodyState extends State<MyProfileBody> {
                             // crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: <Widget>[
                               const Spacer(flex: 10),
-                              const CircleAvatar(
+                              CircleAvatar(
                                 radius: 28.0,
                                 backgroundImage:
-                                    AssetImage('assets/images/user.webp'),
+                                    // currentUser!.imageUrl! ==null?  AssetImage('assets/images/user.webp'):
+                                    CachedNetworkImageProvider(
+                                        currentUser!.imageUrl!),
                               ),
                               const Spacer(),
-                              const Text(
-                                'Samantha Smith',
-                                style: TextStyle(fontSize: 16),
+                              Text(
+                                currentUser!.name!,
+                                style: const TextStyle(fontSize: 16),
                               ),
                               Row(
                                 mainAxisAlignment:

@@ -79,9 +79,10 @@ class AuthMethod {
               isAdmin: false,
               createdAt: Timestamp.now(),
             );
-            currentUser = _appUser;
             final bool _isOkay = await UserAPI().addUser(_appUser);
             if (_isOkay) {
+              currentUser = _appUser;
+
               LocalDB().storeAppUserData(appUser: _appUser);
             } else {
               return false;

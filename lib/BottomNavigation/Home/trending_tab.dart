@@ -1,9 +1,13 @@
+import 'package:animation_wrappers/animations/faded_slide_animation.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:shifftie/Auth/interests_page.dart';
 import 'package:shifftie/Auth/login_navigator.dart';
 import 'package:shifftie/BottomNavigation/Home/comment_sheet.dart';
 import 'package:shifftie/Components/custom_button.dart';
+import 'package:shifftie/Components/entry_field.dart';
 import 'package:shifftie/Components/rotated_image.dart';
+import 'package:shifftie/Constants/constants.dart';
 import 'package:shifftie/Locale/locale.dart';
 import 'package:shifftie/Routes/routes.dart';
 import 'package:shifftie/Theme/colors.dart';
@@ -453,4 +457,5 @@ class _VideoPageState extends State<VideoPage> with RouteAware {
       ),
     );
   }
+
 }

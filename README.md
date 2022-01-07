@@ -1,6 +1,6 @@
 # shifftie
+[![wakatime](https://wakatime.com/badge/user/95cc268b-6e4f-469d-8aee-c933dee3f3be/project/66e17694-f965-4289-8c4e-d2fcc7439bda.svg)](https://wakatime.com/badge/user/95cc268b-6e4f-469d-8aee-c933dee3f3be/project/66e17694-f965-4289-8c4e-d2fcc7439bda)
 
-[![wakatime](https://wakatime.com/badge/user/95cc268b-6e4f-469d-8aee-c933dee3f3be/project/1bf425de-7e27-4b74-9ebb-b2354597f8cc.svg)](https://wakatime.com/badge/user/95cc268b-6e4f-469d-8aee-c933dee3f3be/project/1bf425de-7e27-4b74-9ebb-b2354597f8cc)
 ## Getting Started
 
 This project is a starting point for a Flutter application.

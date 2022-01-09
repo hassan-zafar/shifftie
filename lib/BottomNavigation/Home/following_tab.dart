@@ -7,6 +7,7 @@ import 'package:shifftie/Components/rotated_image.dart';
 import 'package:shifftie/Locale/locale.dart';
 import 'package:shifftie/Routes/routes.dart';
 import 'package:shifftie/Theme/colors.dart';
+import 'package:shifftie/commentsNChat.dart';
 import 'package:video_player/video_player.dart';
 
 RouteObserver<PageRoute> routeObserver = RouteObserver<PageRoute>();
@@ -255,7 +256,13 @@ class _VideoPageState extends State<VideoPage> with RouteAware {
                       color: secondaryColor,
                     ),
                     '287', onPressed: () {
-                  commentSheet(context);
+                  // commentSheet(context);
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => CommentsNChat(
+                        postId: 'postId',
+                        isPostComment: false,
+                        isProductComment: true),
+                  ));
                 }),
                 CustomButton(
                   Icon(

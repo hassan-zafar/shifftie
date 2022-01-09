@@ -4,6 +4,7 @@ import 'package:shifftie/BottomNavigation/Home/comment_sheet.dart';
 import 'package:shifftie/Components/custom_button.dart';
 import 'package:shifftie/Locale/locale.dart';
 import 'package:shifftie/Theme/colors.dart';
+import 'package:shifftie/commentsNChat.dart';
 
 class VideoOptionPage extends StatelessWidget {
   const VideoOptionPage({Key? key}) : super(key: key);
@@ -78,6 +79,7 @@ class _VideoOptionState extends State<VideoOption> {
                     ),
                     '287', onPressed: () {
                   commentSheet(context);
+              
                 }),
                 CustomButton(
                   Icon(

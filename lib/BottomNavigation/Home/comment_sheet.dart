@@ -88,7 +88,7 @@ void commentSheet(BuildContext context) async {
     context: context,
     builder: (context) => StatefulBuilder(
         builder: (context, setState) => SizedBox(
-              height: MediaQuery.of(context).size.height,
+              // height: MediaQuery.of(context).size.height,
               // / 1.5,
               child: CommentsNChat(
                 isPostComment: true,

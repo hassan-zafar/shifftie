@@ -70,7 +70,7 @@ class CommentsNChatState extends State<CommentsNChat> {
           .snapshots(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
-          return const LoadingIndicator();
+          return LoadingIndicator();
         }
         List<CommentsNMessages> commentsList = [];
         snapshot.data!.docs.forEach((doc) {
@@ -98,7 +98,7 @@ class CommentsNChatState extends State<CommentsNChat> {
     super.initState();
     if (mounted) {
       setState(() {
-        chatHeadId = isAdmin! ? widget.chatId : currentUser!.id;
+        // chatHeadId = currentUser.isAdmin! ? widget.chatId : currentUser!.id;
       });
     }
     getAdmins();
@@ -114,7 +114,7 @@ class CommentsNChatState extends State<CommentsNChat> {
           .snapshots(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
-          return const LoadingIndicator();
+          return LoadingIndicator();
         }
         List<CommentsNMessages> chatMessages = [];
         snapshot.data!.docs.forEach((doc) {
@@ -128,7 +128,7 @@ class CommentsNChatState extends State<CommentsNChat> {
   }
 
   addComment() async {
-    String commentId = const Uuid().v1();
+    String commentId = Uuid().v1();
     if (_commentNMessagesController.text.trim().length > 1 &&
         !_commentNMessagesController.text.contains("@")) {
       if (commentsListGlobal.isNotEmpty) {
@@ -221,7 +221,7 @@ class CommentsNChatState extends State<CommentsNChat> {
   }
 
   addChatMessage() {
-    String commentId = const Uuid().v1();
+    String commentId = Uuid().v1();
     if (_commentNMessagesController.text.trim().length > 1) {
       chatRoomRef
           .doc(isAdmin! ? widget.chatId : currentUser!.id)
@@ -276,71 +276,60 @@ class CommentsNChatState extends State<CommentsNChat> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      // appBar: AppBar(
-      //   centerTitle: true,
-      //   title: Text(widget.isPostComment! || widget.isProductComment!
-      //       ? 'COMMENTS'
-      //       : "Contact Admin"),
-      // ),
-      body: Container(
-        height: double.maxFinite,
-        width: double.maxFinite,
-        padding: const EdgeInsets.only(bottom: 20.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            const Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Text(
-                "Comments",
-              ),
-            ),
-            Stack(
-              children: [
-                Expanded(
-                  child: widget.isPostComment! || widget.isProductComment!
-                      ? buildComments()
-                      : buildChat(),
+    return SafeArea(
+      child: Scaffold(
+        // appBar: AppBar(
+        //   centerTitle: true,
+        //   title: Text(widget.isPostComment! || widget.isProductComment!
+        //       ? 'COMMENTS'
+        //       : "Contact Admin"),
+        // ),
+        body: Padding(
+          padding: const EdgeInsets.only(bottom: 20.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Text(
+                  "Comments",
                 ),
-                const Divider(),
-                Positioned(
-                  bottom: 10,
-                  width: 200,
-                  height: 200,
-                  child: Container(
-                    height: 50,
-                    width: double.maxFinite,
-                    child: ListTile(
-                      title: TextFormField(
-                        controller: _commentNMessagesController,
-                        style: const TextStyle(fontSize: 14),
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                          hintText:
-                              widget.isPostComment! || widget.isProductComment!
-                                  ? "Write a Comment..."
-                                  : "Write admin a message...",
-                        ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ListTile(
+                  title: TextFormField(
+                    controller: _commentNMessagesController,
+                    style: const TextStyle(fontSize: 14),
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
                       ),
-                      trailing: IconButton(
-                        onPressed:
-                            widget.isPostComment! || widget.isProductComment!
-                                ? addComment
-                                : addChatMessage,
-                        icon: const Icon(
-                          Icons.send,
-                          size: 30.0,
-                        ),
-                      ),
+                      hintText:
+                          widget.isPostComment! || widget.isProductComment!
+                              ? "Write a Comment..."
+                              : "Write admin a message...",
+                    ),
+                  ),
+                  trailing: IconButton(
+                    onPressed: widget.isPostComment! || widget.isProductComment!
+                        ? addComment
+                        : addChatMessage,
+                    icon: const Icon(
+                      Icons.send,
+                      size: 30.0,
                     ),
                   ),
                 ),
-              ],
-            ),
-          ],
+              ),
+              Expanded(
+                child: widget.isPostComment! || widget.isProductComment!
+                    ? buildComments()
+                    : buildChat(),
+              ),
+              Divider(),
+            ],
+          ),
         ),
       ),
     );
@@ -361,7 +350,7 @@ class CommentsNMessages extends StatefulWidget {
   final int? likes;
   final String? postId;
   final String? androidNotificationToken;
-  const CommentsNMessages({
+  CommentsNMessages({
     this.name,
     this.userId,
     this.avatarUrl,
@@ -404,7 +393,7 @@ class _CommentsNMessagesState extends State<CommentsNMessages> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 12, right: 12, left: 12),
+      padding: EdgeInsets.only(bottom: 12, right: 12, left: 12),
       child: widget.isComment! || widget.isProductComment!
           ? buildCommentBubble()
           : buildMessageBubble(context),
@@ -425,7 +414,7 @@ class _CommentsNMessagesState extends State<CommentsNMessages> {
               // CircleAvatar(
               //   backgroundImage: CachedNetworkImageProvider(widget.avatarUrl!),
               // ),
-              const SizedBox(
+              SizedBox(
                 width: 8,
               ),
               Expanded(
@@ -455,7 +444,7 @@ class _CommentsNMessagesState extends State<CommentsNMessages> {
                       style: TextStyle(
                           color: Theme.of(context).dividerColor, fontSize: 12),
                     ),
-                    const SizedBox(
+                    SizedBox(
                       height: 8,
                     ),
                     Row(
@@ -523,9 +512,9 @@ class _CommentsNMessagesState extends State<CommentsNMessages> {
                               _commentNMessagesController.text =
                                   "@${widget.name} ";
                             },
-                            child: const Padding(
-                              padding: EdgeInsets.only(left: 8, right: 8),
-                              child: const Text("Reply"),
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 8, right: 8),
+                              child: Text("Reply"),
                             ))
                       ],
                     ),
@@ -546,14 +535,14 @@ class _CommentsNMessagesState extends State<CommentsNMessages> {
       decoration: BoxDecoration(
         color: isMe ? Colors.cyan : Theme.of(context).dividerColor,
         borderRadius: isMe
-            ? const BorderRadius.only(
-                bottomLeft: const Radius.circular(20),
+            ? BorderRadius.only(
+                bottomLeft: Radius.circular(20),
                 bottomRight: Radius.circular(20),
                 topLeft: Radius.circular(20),
               )
-            : const BorderRadius.only(
-                bottomLeft: const Radius.circular(20),
-                bottomRight: const Radius.circular(20),
+            : BorderRadius.only(
+                bottomLeft: Radius.circular(20),
+                bottomRight: Radius.circular(20),
                 topRight: Radius.circular(20),
               ),
       ),
@@ -570,7 +559,7 @@ class _CommentsNMessagesState extends State<CommentsNMessages> {
                   backgroundImage:
                       CachedNetworkImageProvider(widget.avatarUrl!),
                 ),
-                const SizedBox(
+                SizedBox(
                   width: 8,
                 ),
                 Expanded(

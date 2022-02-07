@@ -35,9 +35,8 @@ class _AddVideoState extends State<AddVideo> {
         VideoPlayerController.file(file!)..initialize();
     CustomToast.successToast(message: "Video Selected Successfully");
     debugPrint("========" + fileVideocontroller.value.duration.toString());
-    if(_isVideoSelected) {
-      Navigator.pushNamed(
-                        context, PageRoutes.postInfoPage,arguments:file );
+    if (_isVideoSelected) {
+      Navigator.pushNamed(context, PageRoutes.postInfoPage, arguments: file);
     }
   }
 
@@ -86,7 +85,7 @@ class _AddVideoState extends State<AddVideo> {
                         size: 30,
                       ),
                     ),
-                    onTap: () => ,
+                    onTap: () => selectFile(),
                   ),
                   Icon(
                     Icons.flash_off,

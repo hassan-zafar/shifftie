@@ -1,8 +1,13 @@
+import 'dart:io';
+
 import 'package:animation_wrappers/animation_wrappers.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:shifftie/Locale/locale.dart';
 import 'package:shifftie/Routes/routes.dart';
 import 'package:shifftie/Theme/colors.dart';
+import 'package:shifftie/utilities/custom_toast.dart';
+import 'package:video_player/video_player.dart';
 
 class AddVideo extends StatefulWidget {
   const AddVideo({Key? key}) : super(key: key);
@@ -12,6 +17,30 @@ class AddVideo extends StatefulWidget {
 }
 
 class _AddVideoState extends State<AddVideo> {
+  File? file;
+  bool _isVideoSelected = false;
+
+  Future selectFile() async {
+    final result = await FilePicker.platform
+        .pickFiles(allowMultiple: false, type: FileType.video);
+
+    if (result == null) return;
+    final path = result.files.single.path!;
+
+    setState(() {
+      file = File(path);
+      _isVideoSelected = true;
+    });
+    VideoPlayerController fileVideocontroller =
+        VideoPlayerController.file(file!)..initialize();
+    CustomToast.successToast(message: "Video Selected Successfully");
+    debugPrint("========" + fileVideocontroller.value.duration.toString());
+    if(_isVideoSelected) {
+      Navigator.pushNamed(
+                        context, PageRoutes.postInfoPage,arguments:file );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     double ht = MediaQuery.of(context).size.height;
@@ -57,8 +86,7 @@ class _AddVideoState extends State<AddVideo> {
                         size: 30,
                       ),
                     ),
-                    onTap: () => Navigator.pushNamed(
-                        context, PageRoutes.addVideoFilterPage),
+                    onTap: () => ,
                   ),
                   Icon(
                     Icons.flash_off,

@@ -57,7 +57,8 @@ class _PostInfoState extends State<PostInfo> {
   var _categoryDescription = '';
   var _postDescription = '';
   var _videoLength = '';
-  final TextEditingController _postDescriptionController = TextEditingController();
+  final TextEditingController _postDescriptionController =
+      TextEditingController();
   final TextEditingController _subHeadingController = TextEditingController();
   final TextEditingController _postTitleController = TextEditingController();
   final TextEditingController _categoryController = TextEditingController();
@@ -262,10 +263,18 @@ class _PostInfoState extends State<PostInfo> {
               children: <Widget>[
                 Row(
                   children: [
-                    Image.asset(
-                      'assets/thumbnails/dance/Layer 952.png',
-                      height: 120,
-                      width: 80,
+                    Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        Image.asset(
+                          'assets/thumbnails/dance/Layer 952.png',
+                          height: 120,
+                          width: 80,
+                        ),
+                        CircleAvatar(
+                            backgroundColor: Colors.white60,
+                            child: const Icon(Icons.upload)),
+                      ],
                     ),
                     Expanded(
                       child: Padding(
@@ -285,14 +294,16 @@ class _PostInfoState extends State<PostInfo> {
                     ),
                   ],
                 ),
-                 EntryField(
-                  textCapitalization: TextCapitalization.words,controller: _postTitleController,
+                EntryField(
+                  textCapitalization: TextCapitalization.words,
+                  controller: _postTitleController,
                   label: 'Shifttie Title',
                   keyboardType: TextInputType.emailAddress,
                 ),
-                 EntryField(
+                EntryField(
                   textCapitalization: TextCapitalization.words,
-                  label: 'Short Description',controller: _postDescriptionController,
+                  label: 'Short Description',
+                  controller: _postDescriptionController,
                   keyboardType: TextInputType.emailAddress,
                 ),
                 const EntryField(
@@ -311,18 +322,6 @@ class _PostInfoState extends State<PostInfo> {
                   label: 'Poll Answer',
                   keyboardType: TextInputType.emailAddress,
                 ),
-                Text(
-                  AppLocalizations.of(context)!.selectCover! + '\n',
-                  style: TextStyle(color: secondaryColor, fontSize: 18),
-                ),
-                ListView.builder(
-                    physics: const NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemCount: thumbLists.length,
-                    itemBuilder: (context, index) {
-                      return thumbLists[index];
-                    }),
-                const SizedBox(height: 12.0),
                 ListTile(
                   title: Text(
                     AppLocalizations.of(context)!.commentOff!,
@@ -334,25 +333,6 @@ class _PostInfoState extends State<PostInfo> {
                       setState(() {
                         isSwitched1 = value;
                         //print(isSwitched1);
-                      });
-                    },
-                    inactiveThumbColor: disabledTextColor,
-                    inactiveTrackColor: darkColor,
-                    activeTrackColor: darkColor,
-                    activeColor: mainColor,
-                  ),
-                ),
-                ListTile(
-                  title: Text(
-                    AppLocalizations.of(context)!.saveToGallery!,
-                    style: TextStyle(color: secondaryColor),
-                  ),
-                  trailing: Switch(
-                    value: isSwitched2,
-                    onChanged: (value) {
-                      setState(() {
-                        isSwitched2 = value;
-                        //print(isSwitched2);
                       });
                     },
                     inactiveThumbColor: disabledTextColor,

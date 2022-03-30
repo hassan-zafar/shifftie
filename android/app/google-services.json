@@ -22,6 +22,14 @@
           }
         },
         {
+          "client_id": "592392836457-tikml95dbmb95tk4532lkv3238hrh3mc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hassan.shifftie",
+            "certificate_hash": "d3984de38e8552e8a961dbb0688d5693105fc273"
+          }
+        },
+        {
           "client_id": "592392836457-41q0b9p25qm60qkjjgmsb319ddkudp1k.apps.googleusercontent.com",
           "client_type": 3
         }
